@@ -75,4 +75,56 @@
         transparent 65%
       );
   }
+
+  /* New accent gradient with orange/amber */
+  .gradient-accent {
+    background-image: radial-gradient(
+        ellipse at 20% 30%,
+        rgba(56, 189, 248, 0.85) 0%,
+        transparent 100%
+      ),
+      radial-gradient(
+        ellipse at 80% 70%,
+        rgba(251, 146, 60, 0.75) 0%,
+        transparent 100%
+      ),
+      radial-gradient(
+        ellipse at 60% 20%,
+        rgba(139, 92, 246, 0.7) 0%,
+        transparent 100%
+      );
+  }
+
+  /* Warm gradient for storytelling sections */
+  .gradient-warm {
+    background-image: linear-gradient(
+      135deg,
+      rgba(251, 146, 60, 0.2) 0%,
+      rgba(249, 115, 22, 0.1) 50%,
+      rgba(234, 88, 12, 0.05) 100%
+    );
+  }
+
+  /* Scroll animation utilities */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scroll-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .scroll-scale.revealed {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

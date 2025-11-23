@@ -1,0 +1,109 @@
+---
+import TimelineItem from "../components/TimelineItem.astro";
+
+const journeyMilestones = [
+  {
+    year: "2020",
+    title: "The Beginning",
+    description:
+      "Discovered the world of web development. Started learning HTML, CSS, and JavaScript. Built my first website and fell in love with creating digital experiences.",
+    icon: "🚀",
+    technologies: ["HTML", "CSS", "JavaScript"],
+  },
+  {
+    year: "2021",
+    title: "Frontend Mastery",
+    description:
+      "Dove deep into modern frontend frameworks. Mastered React, Angular, and Vue. Started building complex single-page applications and learned about state management.",
+    icon: "⚡",
+    technologies: ["React", "Angular", "Vue", "TypeScript"],
+  },
+  {
+    year: "2022",
+    title: "Full Stack Journey",
+    description:
+      "Expanded to backend development. Learned Node.js, Python, and Java. Built complete full-stack applications with authentication, databases, and APIs.",
+    icon: "🔧",
+    technologies: ["Node.js", "Python", "MongoDB", "PostgreSQL"],
+  },
+  {
+    year: "2023",
+    title: "Modern Tooling",
+    description:
+      "Embraced modern development tools and practices. Adopted Next.js, Astro, and Tailwind CSS. Focused on performance optimization and accessibility.",
+    icon: "✨",
+    technologies: ["Next.js", "Astro", "Tailwind CSS", "GSAP"],
+  },
+  {
+    year: "2024-Present",
+    title: "Innovation & Growth",
+    description:
+      "Continuously learning and pushing boundaries. Exploring new technologies, contributing to open source, and mentoring other developers. Building experiences that matter.",
+    icon: "🎯",
+    technologies: ["React 19", "Astro 5", "Advanced Animations"],
+    isLast: true,
+  },
+];
+---
+
+<section
+  id="journey"
+  class="min-h-dvh relative py-20 px-4 bg-gray-50 dark:bg-gray-950"
+>
+  <div class="max-w-4xl mx-auto relative z-10">
+    <!-- Section Header -->
+    <div class="text-center mb-16 scroll-reveal">
+      <h2
+        class="text-4xl md:text-6xl font-black text-gray-800 dark:text-gray-100 mb-4"
+      >
+        My Journey
+      </h2>
+      <p
+        class="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
+      >
+        From first line of code to crafting digital experiences
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative">
+      {journeyMilestones.map((milestone) => <TimelineItem {...milestone} />)}
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-16 scroll-reveal">
+      <p
+        class="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 normal-case font-sans"
+      >
+        Want to be part of the next chapter?
+      </p>
+      <a
+        href="#contact"
+        class="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-cyan-500 via-purple-500 to-orange-500 text-white font-bold rounded-full hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl"
+      >
+        <span class="uppercase text-sm">Let's Work Together</span>
+        <span class="text-xl">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Scroll reveal animation
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -100px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("revealed");
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll(".scroll-reveal, .timeline-item").forEach((el) => {
+    observer.observe(el);
+  });
+</script>

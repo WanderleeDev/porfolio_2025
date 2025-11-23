@@ -1,0 +1,82 @@
+---
+interface Props {
+  number: string;
+  label: string;
+  suffix?: string;
+  delay?: number;
+}
+
+const { number, label, suffix = "", delay = 0 } = Astro.props;
+const uniqueId = `stat-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div
+  class="stat-card scroll-reveal bg-white/5 dark:bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center hover:border-white/20 transition-all duration-300 hover:scale-105"
+  style={`transition-delay: ${delay}ms`}
+>
+  <div class="flex items-center justify-center gap-1 mb-2">
+    <span
+      id={uniqueId}
+      class="text-4xl md:text-5xl font-black gradient-accent bg-clip-text text-transparent"
+      data-target={number}
+    >
+      0
+    </span>
+    {
+      suffix && (
+        <span class="text-4xl md:text-5xl font-black gradient-accent bg-clip-text text-transparent">
+          {suffix}
+        </span>
+      )
+    }
+  </div>
+  <p
+    class="text-sm md:text-base text-gray-600 dark:text-gray-400 uppercase tracking-wider"
+  >
+    {label}
+  </p>
+</div>
+
+<script>
+  // Animate numbers when they come into view
+  const observerOptions = {
+    threshold: 0.5,
+    rootMargin: "0px",
+  };
+
+  const animateNumber = (element: HTMLElement) => {
+    const target = parseInt(element.dataset.target || "0");
+    const duration = 2000;
+    const steps = 60;
+    const increment = target / steps;
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        element.textContent = target.toString();
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(current).toString();
+      }
+    }, duration / steps);
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const statElement = entry.target.querySelector(
+          "[data-target]"
+        ) as HTMLElement;
+        if (statElement && statElement.textContent === "0") {
+          setTimeout(() => animateNumber(statElement), 200);
+        }
+        entry.target.classList.add("revealed");
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll(".stat-card").forEach((card) => {
+    observer.observe(card);
+  });
+</script>
