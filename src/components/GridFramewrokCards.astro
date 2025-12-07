@@ -1,0 +1,58 @@
+---
+import FrameworkCard from "./FrameworkCard.astro";
+
+const extras = [
+  {
+    title: "React",
+    icon: "devicon:react",
+    url: "https://react-showcase-three.vercel.app/",
+    color: "from-cyan-500/20 to-blue-500/20",
+    hoverColor: "hover:from-cyan-500/30 hover:to-blue-500/30",
+  },
+  {
+    title: "Angular",
+    icon: "devicon:angular",
+    url: "https://entry-page-angular.vercel.app/en-US/",
+    color: "from-red-500/20 to-pink-500/20",
+    hoverColor: "hover:from-red-500/30 hover:to-pink-500/30",
+  },
+  {
+    title: "Vue",
+    icon: "devicon:vuejs",
+    url: "https://vue-showcase-8bg.pages.dev/",
+    color: "from-green-500/20 to-emerald-500/20",
+    hoverColor: "hover:from-green-500/30 hover:to-emerald-500/30",
+  },
+];
+---
+
+<div class="extras-cards-container relative">
+  <ul class="grid grid-cols-1 md:grid-cols-12 gap-6 relative z-10">
+    {
+      extras.map(({ title, icon, url, color, hoverColor }, i) => (
+        <li
+          class={`extras-card-item
+                ${i === 0 ? "md:col-span-6" : ""}
+                ${i === 1 ? "md:col-span-6" : ""}
+                ${i === 2 ? "md:col-span-12" : ""}
+              `}
+        >
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block h-full card-framework"
+            aria-label={`Ver proyecto ${title}`}
+          >
+            <FrameworkCard
+              title={title}
+              icon={icon}
+              color={color}
+              hoverColor={hoverColor}
+            />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

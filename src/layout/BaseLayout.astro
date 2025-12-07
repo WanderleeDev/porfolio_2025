@@ -1,19 +1,23 @@
 ---
 import "../styles/global.css";
 
-import { ClientRouter, slide } from "astro:transitions";
-import Themes from "astro-themes";
 import Footer from "../components/Footer.astro";
 
-import MenuToggle from "../components/MenuToggle.astro";
-import ThemeBtn from "../components/ThemeBtn.astro";
 import Grid from "../components/background/Grid.astro";
+import Header from "../components/Header.astro";
 ---
 
-<html lang="en" transition:animate={slide({ duration: 500 })}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon_default.svg" type="image/svg+xml" />
+
+    <link
+      rel="icon"
+      href="/favicon_dark.svg"
+      type="image/svg+xml"
+      media="(prefers-color-scheme: dark)"
+    />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
@@ -27,70 +31,16 @@ import Grid from "../components/background/Grid.astro";
     <meta property="og:url" content="https://wanderleev.dev" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Portfolio WanderleeDev" />
-    <Themes defaultTheme="dark" />
-    <ClientRouter />
   </head>
   <body
-    class="min-h-svh flex flex-col justify-between bg-gradient dark:bg-gradient-dark duration-500 select-none overflow-x-hidden"
+    class="min-h-svh flex flex-col justify-between duration-500 select-none overflow-x-hidden"
   >
     <Grid />
-    <div class="flex flex-row gap-2 fixed right-2 top-4 z-50">
-      <ThemeBtn />
-      <MenuToggle />
-    </div>
-    <main id="main-container" class="flex flex-col gap-20">
+    <main id="main-container" class="flex flex-col gap-20 bg-gradient-dark">
+      <Header />
       <slot />
     </main>
+    <div class="min-h-dvh" aria-hidden="true"></div>
     <Footer />
   </body>
 </html>
-
-<script is:inline>
-  if (localStorage.getItem("hasSeenPresentation")) {
-    document.querySelector("#presentation-overlay").style.display = "none";
-  }
-</script>
-
-<script>
-  import { presentationAnimate } from "../utils/presentationAnimate";
-  import { setLinkAnimation } from "../utils/linkAnimations";
-  import { setLenisNavigation } from "../utils/setLenisNavigation";
-  import { projectCardsAnimate } from "../utils/projectCardsAnimate";
-  import { footerAnimation } from "../utils/footerAnimation";
-  import { getLenisInstance } from "../utils/lenisInstance";
-  import { gsap, ScrollTrigger } from "../utils/gsapConfig";
-
-  const isMobile = window.innerWidth < 768;
-
-  function initializeGsap() {
-    const lenis = getLenisInstance();
-    lenis.on("scroll", ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(0);
-
-    presentationAnimate();
-    setLenisNavigation(lenis);
-    setLinkAnimation();
-    projectCardsAnimate();
-    footerAnimation();
-  }
-
-  document.addEventListener("resize", (e) => {
-    console.log(e);
-  });
-  document.addEventListener("astro:page-load", () => {
-    console.log(window.innerWidth);
-
-    if (window.innerWidth < 1024) {
-    }
-    initializeGsap();
-  });
-  document.addEventListener("astro:after-swap", () => {
-    ScrollTrigger.getAll().forEach((t) => t.kill());
-    ScrollTrigger.refresh();
-  });
-</script>

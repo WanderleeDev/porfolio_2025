@@ -1,0 +1,30 @@
+---
+import { Image } from "astro:assets";
+---
+
+<a
+  class="relative size-[15vw] block rounded-full overflow-hidden group"
+  href="https://github.com/WanderleeDev"
+  target="_blank"
+  rel="noopener noreferrer"
+  id="badge"
+>
+  <Image
+    id="badge-outer"
+    src="/badge.webp"
+    alt="Star"
+    height={300}
+    width={300}
+    style={{ animationDuration: "7s" }}
+    class="absolute inset-0 bg-black z-10 not-motion-reduce:animate-spin pointer-events-none"
+  />
+  <Image
+    id="badge-inner"
+    src="https://camo.githubusercontent.com/20ba706128d55d5f6e0e2b05f3debd585ce2ab917ec08c5be16c6991facb4b35/68747470733a2f2f7777772e64726f70626f782e636f6d2f73636c2f66692f766979366761756367366535687465667968736a6e2f6d656d652d6761746f2d726f756e6465642e706e673f726c6b65793d386466656b6b6877337a616839666b386e7737613932366c6b2673743d31666e3134363776267261773d31"
+    alt="Star"
+    height={200}
+    width={200}
+    class="size-[8vw] absolute inset-0 z-10 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 contrast-75 pointer-events-none group-hover:scale-90 transition-all duration-500 ease-in-out group-hover:rotate-6 group-hover:grayscale-75"
+  />
+  <span class="sr-only">Go to GitHub WanderleeDev</span>
+</a>

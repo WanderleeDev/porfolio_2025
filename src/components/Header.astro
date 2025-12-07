@@ -1,0 +1,72 @@
+---
+import { Image } from "astro:assets";
+import Icon from "astro-iconify";
+import { sections_links } from "../data";
+---
+
+<header
+  id="header"
+  class="fixed left-0 right-0 w-11/12 mx-auto flex flex-row gap-2 justify-between py-2 will-change-transform origin-center z-20"
+>
+  <figure class="flex items-center gap-2">
+    <div class="relative size-12 aspect-square rounded-full">
+      <Image
+        id="avatar-header"
+        inferSize={true}
+        src="https://camo.githubusercontent.com/20ba706128d55d5f6e0e2b05f3debd585ce2ab917ec08c5be16c6991facb4b35/68747470733a2f2f7777772e64726f70626f782e636f6d2f73636c2f66692f766979366761756367366535687465667968736a6e2f6d656d652d6761746f2d726f756e6465642e706e673f726c6b65793d386466656b6b6877337a616839666b386e7737613932366c6b2673743d31666e3134363776267261773d31"
+        alt="Hero Image"
+        class="size-full relative z-10"
+      />
+      <Icon
+        name="ri:code-s-slash-line"
+        class="absolute inset-0 p-2 size-full text-white border-white/50 border-2 rounded-full"
+      />
+    </div>
+    <figcaption
+      class="text-white text-sm font-fira-sans-extra-condensed text-[1.3vw] font-bold tracking-wider"
+    >
+      Wanderlee
+      <span class="tracking-normal text-amber-400">Dev</span>
+    </figcaption>
+  </figure>
+  <nav class="flex flex-row gap-10 capitalize items-center">
+    {
+      sections_links.map(({ name, icon }) => (
+        <a
+          href={`#${icon}`}
+          class="text-white text-sm font-fira-sans-extra-condensed text-[1.3vw] font-bold tracking-wider hover:text-amber-400 transition-colors block py-2"
+        >
+          {name}
+        </a>
+      ))
+    }
+  </nav>
+</header>
+
+<script>
+  import { gsap } from "../utils/gsapConfig";
+  import { $ } from "../utils/selectors";
+
+  function animateHeader() {
+    const headerElement = $("#header");
+
+    gsap.to(headerElement, {
+      width: "50%",
+      ease: "none",
+      top: "1rem",
+      backgroundColor: "rgba(255, 255, 255, 0.1)",
+      backdropFilter: "blur(10px)",
+      borderRadius: "2rem",
+      padding: "0.5rem 1rem",
+      border: ".1rem solid rgba(255, 255, 255, 0.1)",
+      scrollTrigger: {
+        trigger: headerElement,
+        start: "top top",
+        end: "+=300",
+        scrub: 1,
+      },
+    });
+  }
+
+  animateHeader();
+</script>

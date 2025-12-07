@@ -1,12 +1,20 @@
 @import "tailwindcss";
 
 @layer base {
-  :where(h1, h2, h3, h4, h5, h6) {
-    font-family: 'DM Sans Variable', sans-serif;
+  * {
+    cursor: url("/cursor.svg"), auto;
   }
-  
+
+  :where(a, button):hover {
+    cursor: url("/pointer.svg"), auto;
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    font-family: "Fira Sans Extra Condensed", sans-serif;
+  }
+
   :where(:not(h1, h2, h3, h4, h5, h6)) {
-    font-family: 'DM Mono', monospace;
+    font-family: "DM Mono", monospace;
   }
 
   h1 {
@@ -18,10 +26,12 @@
     font-size: 0.8rem;
     text-transform: uppercase;
     font-weight: 500;
+    color: white;
   }
 
-  h1, p {
-    transition:  color 250ms ease;
+  h1,
+  p {
+    transition: color 250ms ease;
     line-height: 1;
   }
 }

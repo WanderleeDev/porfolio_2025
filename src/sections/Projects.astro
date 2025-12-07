@@ -1,55 +1,26 @@
 ---
-import { main_projects } from "../data";
-import Title from "../components/Title.astro";
-import ProjectCard from "../components/ProjectCard.astro";
+import Title from "../components/typography/Title.astro";
+import Paragraph from "../components/typography/Paragraph.astro";
+import GridProjects from "../components/GridProjects.astro";
 ---
 
 <section id="projects" class="min-h-dvh relative py-20 px-4">
   <header
     class="text-center pt-8 pb-4 px-4 md:absolute md:top-2/4 md:left-2/4 md:-translate-x-2/4 md:-translate-y-2/4 md:text-[5vw] flex justify-center flex-col items-center z-10 md:pt-0 md:pb-0 md:px-0"
   >
-    <Title id="projects-title" customClass="mb-4 md:mb-0 md:scale-0">
-      Projects
-    </Title>
-    <p
-      id="projects-description"
-      class="text-base leading-snug max-w-md mx-auto md:w-[40ch] md:text-[1.3vw] md:will-change-transform md:origin-center md:translate-y-20 normal-case font-sans"
-    >
+    <Title id="projects-title" customClass="mb-4 md:mb-0"> Projects </Title>
+    <Paragraph id="projects-description" customClass="md:w-[40ch]">
       My personal selection of frontend projects, where I highlight examples
       that showcase my approach to web development focused on quality and the
       user.
-    </p>
+    </Paragraph>
   </header>
 
-  <ul
-    class="grid place-content-center items-center gap-6 md:gap-8 grid-cols-1 md:grid-cols-2 w-[90%] md:w-4/5 mx-auto min-h-dvh pt-4 md:py-0"
-  >
-    {
-      main_projects.map((project) => (
-        <li>
-          <ProjectCard {...project} />
-        </li>
-      ))
-    }
-  </ul>
+  <GridProjects />
 </section>
 
 <script>
-  // Scroll reveal animation for project cards
-  const observerOptions = {
-    threshold: 0.2,
-    rootMargin: "0px 0px -50px 0px",
-  };
+  import { createRevealSectionTL } from "../utils/createRevealSectionTL";
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("revealed");
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll(".project-card").forEach((card) => {
-    observer.observe(card);
-  });
+  createRevealSectionTL("#projects-title", "#projects-description");
 </script>

@@ -1,0 +1,59 @@
+---
+import { main_projects } from "../data/index";
+---
+
+<ul
+  class="grid place-content-center items-center gap-4 md:gap-6 grid-cols-1 md:grid-cols-2 w-[90%] md:w-4/5 mx-auto min-h-dvh pt-4 md:py-0"
+>
+  {
+    main_projects.map(({ title, demo_url, image }, i) => (
+      <li class="card-project will-change-transform group">
+        <a
+          class="overflow-hidden rounded-2xl block relative bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/20"
+          target="_blank"
+          href={demo_url}
+          rel="noopener noreferrer"
+        >
+          <img
+            class="aspect-video object-cover w-full group-hover:scale-105 transition-all duration-500 group-hover:brightness-75 pointer-events-none"
+            src={image}
+            alt={title}
+          />
+          <span
+            class={`absolute bottom-0 px-4 md:px-6 py-2 pointer-events-none text-gray-100 font-bold opacity-0 group-hover:opacity-100 duration-300 transition-opacity text-base md:text-[1.5vw] ${i % 2 === 0 ? "right-0" : "left-0"}`}
+          >
+            {title}
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<script>
+  import { gsap } from "../utils/gsapConfig";
+
+  const projectCardsAnimate = () => {
+    const cards = gsap.utils.toArray<HTMLElement>(".card-project");
+
+    cards?.forEach((card, i) => {
+      gsap.to(card, {
+        scrollTrigger: {
+          trigger: "#projects",
+          start: "top 80%",
+          end: "center 50%",
+          scrub: true,
+          onUpdate: (self) => {
+            const progress = self.progress;
+            card.style.transform =
+              i % 2 === 0
+                ? `translateX(-${progress * 20}vw)  rotate(-${progress * 10}deg)`
+                : `translateX(${progress * 20}vw)  rotate(${progress * 10}deg)`;
+          },
+        },
+      });
+    });
+  };
+
+  projectCardsAnimate();
+</script>
