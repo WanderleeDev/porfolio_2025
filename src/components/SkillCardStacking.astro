@@ -1,0 +1,108 @@
+---
+import Icon from "astro-iconify";
+import { skills } from "../data";
+---
+
+<div id="container-cards" class="relative w-full max-w-3xl mx-auto">
+  {
+    skills.map(({ title, techs }, index) => (
+      <article
+        class={`skill-card absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-[380px] rounded-2xl border-2 overflow-hidden origin-center`}
+        style={{
+          background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)",
+          borderColor: "rgba(139, 92, 246, 0.3)",
+          zIndex: skills.length - index,
+          rotate: `${index * 2}deg`,
+        }}
+      >
+        <div class="h-full flex flex-col p-6">
+          <div class="pb-4 border-b-2 border-purple-500/30">
+            <h3 class="text-2xl bg-amber-500 rounded-tr-lg rounded-bl-lg inline-block px-2 py-1">
+              {title}
+            </h3>
+          </div>
+
+          <div class="flex-1 pt-6 overflow-y-auto">
+            <div class="flex flex-wrap gap-6 justify-center items-center h-full border-2 border-purple-500/30 p-4 bg-purple-500/10">
+              {techs.map((tech) => (
+                <div class="flex flex-col items-center gap-2">
+                  <Icon
+                    name={tech.icon}
+                    class="w-12 h-12"
+                    style={{ color: tech.color }}
+                  />
+                  <span class="text-xs font-medium text-white/70">
+                    {tech.icon.split(":")[1].charAt(0).toUpperCase() +
+                      tech.icon
+                        .split(":")[1]
+                        .slice(1)
+                        .replace(/js$/, "JS")
+                        .replace(/css/, "CSS")
+                        .replace(/html/, "HTML")}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </article>
+    ))
+  }
+</div>
+
+<script>
+  import { gsap } from "../utils/gsapConfig";
+  import { $ } from "../utils/selectors";
+
+  function animateSkillCards() {
+    const cards = gsap.utils.toArray<HTMLElement>(".skill-card");
+    const section = $("#skills");
+
+    if (!cards.length || !section) return;
+
+    const totalCards = cards.length;
+
+    cards.forEach((card, index) => {
+      if (index === totalCards - 1) return;
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: `top+=${index * 20}% top`,
+          end: `top+=${(index + 1) * 20}% top`,
+          scrub: 1,
+          markers: false,
+        },
+      });
+
+      timeline.to(card, {
+        keyframes: [
+          {
+            x: window.innerWidth * 0.3,
+            y: -300,
+            rotation: 10,
+            opacity: 0.9,
+            duration: 0.4,
+          },
+          {
+            x: window.innerWidth * 0.6,
+            y: -400,
+            rotation: 20,
+            opacity: 0.6,
+            duration: 0.3,
+          },
+          {
+            x: window.innerWidth * 1.2,
+            y: -200,
+            rotation: 30,
+            opacity: 0,
+            duration: 0.3,
+          },
+        ],
+        ease: "power1.inOut",
+      });
+    });
+  }
+
+  animateSkillCards();
+</script>

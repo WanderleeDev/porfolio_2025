@@ -15,8 +15,6 @@ export const skills = [
       { color: "#339933", icon: "devicon:nodejs" },
     ],
   },
-
-  // Frontend Section
   {
     title: "Frontend",
     techs: [
@@ -43,7 +41,7 @@ export const skills = [
     ],
   },
   {
-    title: "",
+    title: "Others",
     techs: [
       { color: "#42b883", icon: "devicon:vuejs" },
       { color: "#00DC82", icon: "devicon:nuxtjs" },
@@ -122,11 +120,6 @@ export const extra_projects = [
 ];
 
 export const sections_links = [
-  {
-    name: "home",
-    icon: "ri:home-2-line",
-    label: "Home",
-  },
   {
     name: "skills",
     icon: "ri:code-s-slash-line",

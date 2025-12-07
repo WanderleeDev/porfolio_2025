@@ -15,7 +15,7 @@ const endpoint = `https://formspree.io/f/${formId}`;
   >
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <label class="flex flex-col">
-        <span class="text-sm font-medium mb-2">Name</span>
+        <span class="text-sm font-medium mb-2 text-neutral-200">Name</span>
         <input
           name="name"
           type="text"
@@ -26,7 +26,7 @@ const endpoint = `https://formspree.io/f/${formId}`;
       </label>
 
       <label class="flex flex-col">
-        <span class="text-sm font-medium mb-2">Email</span>
+        <span class="text-sm font-medium mb-2 text-neutral-200">Email</span>
         <input
           name="email"
           type="email"
@@ -38,7 +38,7 @@ const endpoint = `https://formspree.io/f/${formId}`;
     </div>
 
     <label class="flex flex-col">
-      <span class="text-sm font-medium mb-2">Subject</span>
+      <span class="text-sm font-medium mb-2 text-neutral-200">Subject</span>
       <input
         name="subject"
         type="text"
@@ -48,7 +48,7 @@ const endpoint = `https://formspree.io/f/${formId}`;
     </label>
 
     <label class="flex flex-col">
-      <span class="text-sm font-medium mb-2">Message</span>
+      <span class="text-sm font-medium mb-2 text-neutral-200">Message</span>
       <textarea
         name="message"
         rows="6"
@@ -60,7 +60,7 @@ const endpoint = `https://formspree.io/f/${formId}`;
     <div class="flex items-center gap-4">
       <button
         type="submit"
-        class="px-8 py-3 rounded-xl font-medium gradient text-gray-100 shadow-lg transform hover:-translate-y-0.5 duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400/50 cursor-pointer"
+        class="px-8 py-3 rounded-xl font-medium gradient text-gray-100 shadow-lg transform hover:-translate-y-0.5 duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400/50 cursor-pointer bg-amber-500"
       >
         Send Message
       </button>
@@ -70,7 +70,6 @@ const endpoint = `https://formspree.io/f/${formId}`;
 </div>
 
 <style>
-  /* Gradient top border effect */
   .form-glass-card::before {
     content: "";
     position: absolute;
@@ -87,7 +86,6 @@ const endpoint = `https://formspree.io/f/${formId}`;
     );
   }
 
-  /* Responsive padding adjustments */
   @media (max-width: 1024px) {
     .form-glass-card {
       padding: 1.5rem;

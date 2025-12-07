@@ -1,64 +1,101 @@
 ---
 import { randomTranslate } from "../utils";
-import LinkMinimal from "./LinkMinimal.astro";
+import Icon from "astro-iconify";
+import FloatingElements from "./background/FloatingElements.astro";
+import Paragraph from "./typography/Paragraph.astro";
 
 const developText = "Developed by WanderleeDev 2025";
-const externaLinks = [
+const socialLinks = [
   {
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/wanderlee-max/",
+    icon: "mdi:linkedin",
   },
   {
     name: "Github",
     url: "https://github.com/WanderleeDev",
+    icon: "mdi:github",
   },
   {
-    name: "Porfolio",
+    name: "Portfolio",
     url: "",
+    icon: "mdi:briefcase",
   },
 ];
 ---
 
 <footer
-  class="min-h-svh flex flex-col justify-between bg-[#202020] overflow-hidden"
+  class="min-h-svh flex flex-col justify-between bg-[#202020] overflow-hidden fixed inset-0 top-0 -z-10"
 >
-  <div class="flex justify-center items-center flex-1">
-    <video
-      class="size-80 block aspect-square select-none pointer-events-none"
-      autoplay
-      src="https://framerusercontent.com/assets/eRZcys000MshO4J4rEcvOKVqQ.webm"
-      loop
-      preload="auto"
-      muted></video>
-  </div>
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 h-full place-content-center gap-8 md:gap-12 px-4"
+  >
+    <div class="md:items-center md:justify-center hidden md:flex">
+      <div
+        class="relative w-80 h-80 md:w-96 md:h-96 lg:w-[26rem] lg:h-[26rem] overflow-hidden"
+      >
+        <video
+          class="w-full h-full object-cover pointer-events-none select-none md:mask-[url(/mask-profile.webp)] md:mask-size-[110%_90%] md:mask-center md:mask-no-repeat"
+          autoplay
+          poster="tom_fallback.webp"
+          loop
+          muted
+        >
+          Tu navegador no soporta la etiqueta de video.
+          <source src="tom_programmer.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
 
-  <div>
-    <ul
-      class="flex flex-col xs:flex-row px-4 xs:p-0 gap-2 overflow-hidden text-gray-200 justify-evenly uppercase text-sm"
-    >
-      {
-        externaLinks.map((link) => (
-          <li class="footer-link translate-y-full opacity-0">
-            <LinkMinimal name={link.name} url={link.url} label={link.name} />
-          </li>
-        ))
-      }
-    </ul>
-    <p
-      class="mt-auto text-center text-lg sm:text-3xl lg:text-5xl xl:text-7xl -tracking-wider text-neutral-500 overflow-hidden relative min-h-28 sm:min-h-40 content-center sm:my-4"
-      id="footer-content"
-      aria-label={developText}
-    >
-      {
-        developText.split("").map((char) => (
-          <span
-            class={`char relative inline-block opacity-0  will-change-transform ${randomTranslate()}`}
-            aria-hidden="true"
-          >
-            {char === " " ? "\u00A0" : char}
-          </span>
-        ))
-      }
-    </p>
+    <div class="flex flex-col gap-6 w-full max-w-lg">
+      <Paragraph
+        customClass="text-neutral-400 md:text-lg leading-relaxed text-center md:text-left"
+      >
+        Feel free to reach out for collaborations or just a friendly chat.
+        Always open to new opportunities and interesting projects.
+      </Paragraph>
+
+      <nav aria-label="Social media links">
+        <ul class="flex flex-col gap-3">
+          {
+            socialLinks.map((link) => (
+              <li>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.name}
+                  class="group flex items-center gap-4 px-5 py-3 rounded-lg border border-neutral-700 text-neutral-400 hover:text-white hover:border-neutral-500 hover:bg-neutral-800/30 transition-all duration-300"
+                >
+                  <Icon
+                    name={link.icon}
+                    class="w-5 h-5 transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <span class="text-sm font-medium tracking-wide">
+                    {link.name}
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
   </div>
+  <p
+    class="mt-auto text-center text-lg sm:text-3xl lg:text-5xl xl:text-7xl -tracking-wider text-neutral-500 overflow-hidden relative min-h-28 sm:min-h-40 content-center sm:my-4 font-dm-mono"
+    id="footer-content"
+    aria-label={developText}
+  >
+    {
+      developText.split("").map((char) => (
+        <span
+          class={`char relative inline-block  will-change-transform`}
+          aria-hidden="true"
+        >
+          {char === " " ? "\u00A0" : char}
+        </span>
+      ))
+    }
+  </p>
 </footer>
