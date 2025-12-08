@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
-import Grid from "../components/background/Grid.astro";
 import Header from "../components/Header.astro";
 ---
 
@@ -33,7 +32,6 @@ import Header from "../components/Header.astro";
   <body
     class="min-h-svh flex flex-col justify-between duration-500 select-none overflow-x-hidden"
   >
-    <Grid />
     <main id="main-container" class="flex flex-col gap-20 bg-gradient-dark">
       <Header />
       <slot />
