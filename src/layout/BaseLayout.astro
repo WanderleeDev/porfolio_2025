@@ -2,11 +2,19 @@
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import firaSansWoff2 from "@fontsource/fira-sans-extra-condensed/files/fira-sans-extra-condensed-latin-700-normal.woff2?url";
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <link
+      rel="preload"
+      href={firaSansWoff2}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="icon" href="/favicon_default.svg" type="image/svg+xml" />
     <link
       rel="icon"
@@ -27,13 +35,7 @@ import Header from "../components/Header.astro";
     <meta name="author" content="WanderleeDev" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://porfolio-2025-seven.vercel.app/" />
-    <link
-      rel="preload"
-      href="/@fontsource/fira-sans-extra-condensed/files/fira-sans-extra-condensed-latin-700-normal.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
+
     <title>Portfolio WanderleeDev</title>
     <meta property="og:title" content="Portfolio WanderleeDev" />
     <meta
