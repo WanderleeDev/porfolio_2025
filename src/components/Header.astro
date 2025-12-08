@@ -8,6 +8,7 @@ import { sections_links } from "../data";
   id="header"
   class="fixed left-0 right-0 w-11/12 mx-auto flex flex-row gap-2 justify-between py-2 will-change-transform origin-center z-20"
 >
+  <h1 class="sr-only">WanderleeDev Portfolio</h1>
   <figure class="flex items-center gap-2">
     <div class="relative size-12 aspect-square rounded-full">
       <Image
@@ -32,9 +33,9 @@ import { sections_links } from "../data";
   </figure>
   <nav class="flex flex-row gap-10 capitalize items-center">
     {
-      sections_links.map(({ name, icon }) => (
+      sections_links.map(({ name }) => (
         <a
-          href={`#${icon}`}
+          href={`#${name}`}
           class="text-white text-sm font-fira-sans-extra-condensed text-[1.3vw] font-bold tracking-wider hover:text-amber-400 transition-colors block py-2"
         >
           {name}
