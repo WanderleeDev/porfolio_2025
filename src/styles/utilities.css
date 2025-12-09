@@ -92,4 +92,20 @@
         transparent 100%
       );
   }
+
+  .font-banner {
+    font-size: clamp(3rem, 15vw + 1rem, 6rem);
+    line-height: 1;
+    max-width: 10ch;
+
+    @media (width >= 768px) {
+      font-size: 11vw;
+      max-width: 17ch;
+      line-height: 1.2;
+    }
+
+    @media (width >= 1024px) {
+      line-height: 0.95;
+    }
+  }
 }

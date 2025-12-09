@@ -3,10 +3,10 @@ import { Image } from "astro:assets";
 import BadgeLink from "../components/BadgeLink.astro";
 ---
 
-<section class="relative min-h-dvh">
+<section class="relative min-h-dvh content-center">
   <p
     id="presentation"
-    class="relative z-10 text-[11vw] max-w-[17ch] pt-36 text-center text-balance font-bold leading-[0.95] font-fira-sans-extra-condensed flex flex-col justify-center items-center gap-1 text-stone-100"
+    class="relative z-10 mx-auto text-center text-balance font-bold leading-[0.95] font-fira-sans-extra-condensed flex flex-col justify-center items-center gap-1 text-stone-100 font-banner h-fit w-fit"
   >
     <span class="font-inherit relative">
       Inspiring
@@ -36,10 +36,12 @@ import BadgeLink from "../components/BadgeLink.astro";
     <span class="relative font-[inherit] inline-block first-letter:skew-x-12"
       >story at <span class="font-inherit text-yellow-500">a time.</span>
     </span>
+    <span
+      class="rotate-12 absolute -z-10 top-10/12 left-7/12 md:top-0 md:right-0 md:left-auto md:-translate-y-1/4 md:translate-x-1/12"
+    >
+      <BadgeLink />
+    </span>
   </p>
-  <div class="rotate-12 absolute top-28 left-3/4 -translate-x-1/4 z-10">
-    <BadgeLink />
-  </div>
 </section>
 
 <script>

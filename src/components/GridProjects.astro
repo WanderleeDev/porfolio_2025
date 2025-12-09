@@ -4,10 +4,10 @@ import { main_projects } from "../data/index";
 ---
 
 <ul
-  class="grid place-content-center items-center gap-4 md:gap-6 grid-cols-1 md:grid-cols-2 w-[90%] md:w-4/5 mx-auto min-h-dvh pt-4 md:py-0"
+  class="grid place-content-center items-center gap-8 md:gap-6 grid-cols-1 md:grid-cols-2 w-[90%] md:w-full lg:w-4/5 px-2 mx-auto lg:min-h-dvh pt-4 md:py-0"
 >
   {
-    main_projects.map(({ title, demo_url, image }, i) => (
+    main_projects.map(({ title, demo_url, image, description }, i) => (
       <li class="card-project will-change-transform group">
         <a
           class="overflow-hidden rounded-2xl block relative bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/20"
@@ -16,7 +16,7 @@ import { main_projects } from "../data/index";
           rel="noopener noreferrer"
         >
           <Image
-            class="aspect-video object-cover w-full group-hover:scale-105 transition-all duration-500 group-hover:brightness-75 pointer-events-none"
+            class="aspect-video object-cover w-full group-hover:scale-105 transition-all duration-500 lg:group-hover:brightness-75 pointer-events-none"
             loading="lazy"
             src={image}
             alt={`thumbnail for ${title}`}
@@ -24,11 +24,14 @@ import { main_projects } from "../data/index";
             height={250}
             inferSize
           />
-          <span
-            class={`absolute bottom-0 px-4 md:px-6 py-2 pointer-events-none text-gray-100 font-bold opacity-0 group-hover:opacity-100 duration-300 transition-opacity text-base md:text-[1.5vw] ${i % 2 === 0 ? "right-0" : "left-0"}`}
+          <div
+            class={`absolute flex flex-col justify-end bottom-0 h-full px-4 md:px-6 py-2 pointer-events-none text-gray-100 font-bold lg:opacity-0 lg:group-hover:opacity-100 lg:duration-300 lg:transition-opacity text-base md:text-[1.5vw] ${i % 2 === 0 ? "right-0" : "left-0"} bg-black/70`}
           >
-            {title}
-          </span>
+            <span class="font-extrabold">{title}</span>
+            <p class="pt-2 lowercase first-letter:uppercase text-neutral-200">
+              {description}.
+            </p>
+          </div>
         </a>
       </li>
     ))
@@ -36,28 +39,85 @@ import { main_projects } from "../data/index";
 </ul>
 
 <script>
-  import { gsap } from "../utils/gsapConfig";
+  import {
+    gsap,
+    GsapBreakpoints,
+    type GsapBreakpointsType,
+  } from "../utils/gsapConfig";
+
+  const ANIMATION_CONFIG = {
+    mobile: {
+      duration: 0.8,
+      ease: "power2.out",
+      scrollTrigger: {
+        start: "top 80%",
+        end: "center 50%",
+        toggleActions: "play none none reverse",
+      },
+    },
+    desktop: {
+      scrollTrigger: {
+        start: "top 80%",
+        end: "bottom 20%",
+        scrub: true,
+      },
+    },
+  } as const;
 
   const projectCardsAnimate = () => {
     const cards = gsap.utils.toArray<HTMLElement>(".card-project");
+    const containerCards = document.querySelector("#projects");
 
-    cards?.forEach((card, i) => {
-      gsap.to(card, {
-        scrollTrigger: {
-          trigger: "#projects",
-          start: "top 80%",
-          end: "center 50%",
-          scrub: true,
-          onUpdate: (self) => {
-            const progress = self.progress;
-            card.style.transform =
-              i % 2 === 0
-                ? `translateX(-${progress * 20}vw)  rotate(-${progress * 10}deg)`
-                : `translateX(${progress * 20}vw)  rotate(${progress * 10}deg)`;
-          },
-        },
+    if (!cards?.length || !containerCards) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add({ ...GsapBreakpoints }, (context) => {
+      let { isDesktop, isMobile, isTablet, reduceMotion } =
+        context.conditions as GsapBreakpointsType;
+
+      gsap.set(cards, { clearProps: "all" });
+
+      if (reduceMotion) return;
+
+      cards.forEach((card, i) => {
+        const isEven = i % 2 === 0;
+
+        if (isMobile || isTablet) {
+          gsap.set(card, {
+            x: isEven ? "-100%" : "100%",
+            rotation: isEven ? -10 : 10,
+            opacity: 0,
+          });
+
+          gsap.to(card, {
+            ...ANIMATION_CONFIG.mobile,
+            scrollTrigger: {
+              ...ANIMATION_CONFIG.mobile.scrollTrigger,
+              trigger: card,
+            },
+            x: 0,
+            rotation: 0,
+            opacity: 1,
+          });
+
+          return;
+        }
+
+        if (isDesktop) {
+          gsap.to(card, {
+            scrollTrigger: {
+              ...ANIMATION_CONFIG.desktop.scrollTrigger,
+              trigger: containerCards,
+            },
+            x: isEven ? "-20vw" : "20vw",
+            rotation: isEven ? -10 : 10,
+          });
+        }
       });
     });
+
+    return () => mm.revert();
   };
 
   projectCardsAnimate();

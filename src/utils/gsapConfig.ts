@@ -1,17 +1,32 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { CustomEase } from "gsap/CustomEase";
 import { SplitText } from "gsap/SplitText";
 import { Flip } from "gsap/Flip";
 import { getLenisInstance } from "./lenisInstance";
 
+const GsapBreakpoints = {
+  isMobile: "(max-width: 768px)",
+  isTablet: "(min-width: 769px) and (max-width: 1024px)",
+  isDesktop: "(min-width: 1024px)",
+  reduceMotion: "(prefers-reduced-motion: reduce)",
+} as const;
+
+type GsapBreakpointsType = Record<keyof typeof GsapBreakpoints, boolean>;
+
 const lenis = getLenisInstance();
 lenis.on("scroll", ScrollTrigger.update);
 
-gsap.registerPlugin(ScrollTrigger, CustomEase, SplitText, Flip);
+gsap.registerPlugin(ScrollTrigger, SplitText, Flip);
 
 gsap.ticker.add((time) => {
   lenis.raf(time * 1000);
 });
 
-export { gsap, ScrollTrigger, SplitText, Flip };
+export {
+  gsap,
+  ScrollTrigger,
+  SplitText,
+  Flip,
+  GsapBreakpoints,
+  type GsapBreakpointsType,
+};

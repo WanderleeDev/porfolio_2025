@@ -9,4 +9,11 @@ export default defineConfig({
   },
 
   integrations: [],
+  server: {
+    allowedHosts: [
+      "localhost",
+      "127.0.0.1",
+      "biblical-seasons-trivia-properly.trycloudflare.com",
+    ],
+  },
 });

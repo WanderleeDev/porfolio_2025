@@ -1,43 +1,43 @@
-# Astro Starter Kit: Minimal
+# WanderleeDev Portfolio 2025
 
-```sh
-bun create astro@latest -- --template minimal
+Personal portfolio showcasing web development projects and skills, focused on performance and modern design.
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Astro](https://astro.build/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Animations:** [GSAP](https://greensock.com/gsap/)
+- **Icons:** [Astro Iconify](https://github.com/natemoo-re/astro-iconify)
+
+## 🚀 Getting Started
+
+1. **Install dependencies:**
+
+```bash
+npm install
+# or
+bun install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+2. **Start development server:**
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npm run dev
+# or
+bun dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+3. **Build for production:**
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+npm run build
+# or
+bun build
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 🌐 Features
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- ⚡️ High performance
+- 🎨 Responsive & Glassmorphism design
+- 🌍 English & Spanish support
+- 🎭 Smooth scroll animations
