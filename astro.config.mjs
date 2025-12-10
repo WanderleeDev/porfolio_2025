@@ -13,7 +13,7 @@ export default defineConfig({
     allowedHosts: [
       "localhost",
       "127.0.0.1",
-      "biblical-seasons-trivia-properly.trycloudflare.com",
+      "clan-lace-discounts-steps.trycloudflare.com",
     ],
   },
 });
