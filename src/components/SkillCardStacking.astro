@@ -3,11 +3,14 @@ import Icon from "astro-iconify";
 import { skills } from "../data";
 ---
 
-<div id="container-cards" class="relative w-full max-w-3xl mx-auto">
+<div
+  id="container-cards"
+  class="relative w-full max-w-3xl mx-auto md:h-120 h-96"
+>
   {
     skills.map(({ title, techs }, index) => (
       <article
-        class={`skill-card absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-[500px] lg:h-[380px] rounded-2xl border-2 overflow-hidden origin-center`}
+        class={`skill-card absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-10/12 h-80 md:max-w-2xl md:h-120 lg:h-96 rounded-2xl border-2 overflow-hidden origin-center`}
         style={{
           background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)",
           borderColor: "rgba(139, 92, 246, 0.3)",
@@ -23,7 +26,7 @@ import { skills } from "../data";
           </div>
 
           <div class="flex-1 pt-6 overflow-y-auto">
-            <div class="flex flex-wrap gap-4 lg:gap-6 justify-center items-center h-full border-2 border-purple-500/30 p-2 lg:p-4 bg-purple-500/10">
+            <div class="flex flex-wrap gap-4 lg:gap-6  justify-center items-center content-center h-full border-2 border-purple-500/30 p-4 bg-purple-500/10 overflow-auto">
               {techs.map((tech) => (
                 <div class="flex flex-col items-center gap-2">
                   <Icon
@@ -31,7 +34,7 @@ import { skills } from "../data";
                     class="size-8 lg:size-12"
                     style={{ color: tech.color }}
                   />
-                  <span class="text-xs font-medium text-white/70">
+                  <span class="text-xs hidden md:block font-medium text-white/70">
                     {tech.icon.split(":")[1].charAt(0).toUpperCase() +
                       tech.icon
                         .split(":")[1]

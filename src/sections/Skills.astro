@@ -11,11 +11,11 @@ const maxHeightContainer = `${(skills.length - 1) * 100}vh`;
 
 <section
   id="skills"
-  class="relative min-h-dvh p-4 lg:p-8"
+  class={`relative min-h-dvh p-4 flex flex-col lg:p-8`}
   style={{ height: maxHeightContainer }}
 >
   <div
-    class="sticky top-1 max-w-7xl mx-auto grid gap-12 lg:gap-16 lg:items-center lg:grid-cols-2 min-h-dvh py-12 lg:py-0"
+    class="lg:sticky lg:top-1 max-w-7xl lg:min-h-dvh mx-auto grid gap-12 lg:gap-16 lg:items-center lg:grid-cols-2 py-12 lg:py-0"
   >
     <header class="relative z-10">
       <div class="space-y-6">
@@ -30,13 +30,45 @@ const maxHeightContainer = `${(skills.length - 1) * 100}vh`;
 
       <FloatingElements />
     </header>
-
-    <SkillCardStacking />
+    <div id="container-desktop" class="lg:block hidden">
+      <SkillCardStacking />
+    </div>
   </div>
+  <div id="container-mobile" class="block sticky top-1/4 lg:hidden"></div>
 </section>
 
 <script>
   import { createRevealSectionTL } from "../utils/createRevealSectionTL";
+  import {
+    gsap,
+    GsapBreakpoints,
+    type GsapBreakpointsType,
+  } from "../utils/gsapConfig";
+  import { $ } from "../utils/selectors";
+
+  function animateSectionSkill() {
+    const mm = gsap.matchMedia();
+    const cardsContainer = $("#container-cards");
+    const containerMobile = $("#container-mobile");
+    const containerDesktop = $("#container-desktop");
+
+    if (!cardsContainer || !containerMobile || !containerDesktop) return;
+
+    mm.add({ ...GsapBreakpoints }, (context) => {
+      let { isDesktop } = context.conditions as GsapBreakpointsType;
+
+      if (isDesktop) {
+        containerDesktop?.appendChild(cardsContainer);
+        return;
+      }
+      containerMobile?.appendChild(cardsContainer);
+    });
+
+    return () => {
+      mm.kill();
+    };
+  }
 
   createRevealSectionTL(".skills-title", ".skills-text");
+  animateSectionSkill();
 </script>

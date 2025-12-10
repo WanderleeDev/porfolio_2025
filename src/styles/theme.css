@@ -4,4 +4,5 @@
   --font-dm-mono: "DM Mono", monospace;
   --font-fira-sans-extra-condensed: "Fira Sans Extra Condensed", sans-serif;
   --breakpoint-xs: 400px;
+  --spacing-120: 31.25rem;
 }
