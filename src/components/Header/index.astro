@@ -30,7 +30,7 @@ import MobileBtnMenu from "./MobileBtnMenu.astro";
 
   function animateHeader() {
     const headerElement = $("#header");
-    const fotterElement = $("#footer");
+    const mainContainer = $("#main-container");
     const mm = gsap.matchMedia();
 
     mm.add({ ...GsapBreakpoints }, (context) => {
@@ -63,9 +63,14 @@ import MobileBtnMenu from "./MobileBtnMenu.astro";
 
       gsap.to(headerElement, {
         scrollTrigger: {
-          trigger: fotterElement,
+          trigger: mainContainer,
+          start: "bottom bottom",
+          end: "+=200",
+          scrub: true,
         },
+        y: -20,
         opacity: 0,
+        pointerEvents: "none",
       });
     });
   }
