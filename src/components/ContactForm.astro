@@ -3,6 +3,7 @@ import { getTranslations } from "../i18n/utils";
 
 const lang = Astro.currentLocale as "es" | "en";
 const t = getTranslations(lang);
+const formT = t("form");
 
 const formId = import.meta.env.FORMSPREE_FORM_ID;
 const endpoint = `https://formspree.io/f/${formId}`;
@@ -21,53 +22,53 @@ const endpoint = `https://formspree.io/f/${formId}`;
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <label class="flex flex-col">
         <span class="text-sm font-medium mb-2 text-neutral-200"
-          >{t("form.name")}</span
+          >{formT.name.label}</span
         >
         <input
           name="name"
           type="text"
           required
           class="px-4 py-3 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 duration-300"
-          placeholder={t("form.name.placeholder")}
+          placeholder={formT.name.placeholder}
         />
       </label>
 
       <label class="flex flex-col">
         <span class="text-sm font-medium mb-2 text-neutral-200"
-          >{t("form.email")}</span
+          >{formT.email.label}</span
         >
         <input
           name="email"
           type="email"
           required
           class="px-4 py-3 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 duration-300"
-          placeholder={t("form.email.placeholder")}
+          placeholder={formT.email.placeholder}
         />
       </label>
     </div>
 
     <label class="flex flex-col">
       <span class="text-sm font-medium mb-2 text-neutral-200"
-        >{t("form.subject")}</span
+        >{formT.subject.label}</span
       >
       <input
         name="subject"
         type="text"
         class="px-4 py-3 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 duration-300"
-        placeholder={t("form.subject.placeholder")}
+        placeholder={formT.subject.placeholder}
       />
     </label>
 
     <label class="flex flex-col">
       <span class="text-sm font-medium mb-2 text-neutral-200"
-        >{t("form.message")}</span
+        >{formT.message.label}</span
       >
       <textarea
         name="message"
         rows="6"
         required
         class="px-4 py-3 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 duration-300 resize-none"
-        placeholder={t("form.message.placeholder")}></textarea>
+        placeholder={formT.message.placeholder}></textarea>
     </label>
 
     <div class="flex items-center gap-4">
@@ -75,7 +76,7 @@ const endpoint = `https://formspree.io/f/${formId}`;
         type="submit"
         class="px-8 py-3 rounded-xl text-white font-medium gradient"
       >
-        {t("form.submit")}
+        {formT.submit}
       </button>
       <p id="form-status" class="text-sm text-gray-300"></p>
     </div>

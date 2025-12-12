@@ -1,161 +1,256 @@
 export const en = {
-  "nav.home": "Home",
-  "nav.about": "About",
-  "nav.projects": "Projects",
-  "nav.contact": "Contact",
-  "footer.developedBy": "Developed by WanderleeDev 2025",
-  "hero.description": "Web developer showcasing projects and skills.",
-  "form.name": "Name",
-  "form.name.placeholder": "Your name",
-  "form.email": "Email",
-  "form.email.placeholder": "your@email.com",
-  "form.subject": "Subject",
-  "form.subject.placeholder": "Project inquiry",
-  "form.message": "Message",
-  "form.message.placeholder": "Tell me about your project...",
-  "form.submit": "Send Message",
-
-  skills: [
+  nav: {
+    mobileMenuLabel: "Mobile menu",
+  },
+  metadata: {
+    title: "Portfolio WanderleeDev",
+    description:
+      "Portfolio of WanderleeDev, a web developer showcasing projects and skills.",
+    keywords: "portfolio, WanderleeDev, web developer, projects, skills",
+  },
+  social: [
     {
-      title: "My Stack",
-      techs: [
-        { color: "#13AA52", icon: "devicon:mongodb" },
-        { color: "#9e9e9e", icon: "devicon:express" },
-        { color: "#DD0031", icon: "devicon:angular" },
-        { color: "#339933", icon: "devicon:nodejs" },
-      ],
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/wanderlee-max/",
+      icon: "mdi:linkedin",
     },
     {
-      title: "Frontend",
-      techs: [
-        { color: "#E44D26", icon: "devicon:html5" },
-        { color: "#4884B7", icon: "devicon:css3" },
-        { color: "#F0DB4F", icon: "devicon:javascript" },
-        { color: "#007ACC", icon: "devicon:typescript" },
-        { color: "#00d8ff", icon: "devicon:react" },
-        { color: "#9e9e9e", icon: "devicon:nextjs" },
-        { color: "#ff5d01", icon: "devicon:astro" },
-        { color: "#CC6699", icon: "devicon:sass" },
-        { color: "#06B6D4", icon: "devicon:tailwindcss" },
-        { color: "#d2227d", icon: "devicon:ngrx" },
-      ],
+      name: "Github",
+      url: "https://github.com/WanderleeDev",
+      icon: "mdi:github",
     },
     {
-      title: "Backend",
-      techs: [
-        { color: "#ffc331", icon: "devicon:python" },
-        { color: "#009688", icon: "devicon:fastapi" },
-        { color: "#E0234E", icon: "devicon:nestjs" },
-        { color: "#ED8B00", icon: "devicon:java" },
-        { color: "#6DB33F", icon: "devicon:spring" },
-      ],
-    },
-    {
-      title: "Others",
-      techs: [
-        { color: "#42b883", icon: "devicon:vuejs" },
-        { color: "#00DC82", icon: "devicon:nuxtjs" },
-        { color: "#8C38EF", icon: "devicon:bootstrap" },
-      ],
-    },
-    {
-      title: "Tools",
-      techs: [
-        { color: "#F05032", icon: "devicon:git" },
-        { color: "#9e9e9e", icon: "devicon:github" },
-        { color: "#2496ED", icon: "devicon:docker" },
-        { color: "#0079BF", icon: "devicon:trello" },
-      ],
+      name: "Portfolio",
+      url: "",
+      icon: "mdi:briefcase",
     },
   ],
+  footer: {
+    developedBy: "Developed by WanderleeDev 2025",
+    socialLinksAria: "Social media links",
+  },
 
-  projects: [
-    {
-      title: "Ecommerce",
-      description:
-        "Ecommerce with authentication system, shopping cart, notifications, and local storage usage",
-      problem:
-        "Users needed a seamless shopping experience with persistent cart data and real-time notifications for order updates.",
-      solution:
-        "Built a full-featured ecommerce platform with Angular, implementing JWT authentication, local storage for cart persistence, and a notification system for order tracking.",
-      impact:
-        "Created an intuitive shopping experience with 40% faster checkout process and improved user retention through persistent cart functionality.",
-      demo_url: "https://clior.vercel.app/",
-      technologies: ["angular", "sass", "typeScript", "flowbite"],
-      image:
-        "https://res.cloudinary.com/dy8gpozi6/image/upload/v1765154110/clior_biw8pq.webp",
-      label: "view ecommerce demo",
+  badge: {
+    label: "Go to GitHub WanderleeDev",
+  },
+  presentation: {
+    start: "Inspiring",
+    accent: "Start-ups,",
+    middle: "one",
+    end_prefix: "story at",
+    end_highlight: "a time.",
+  },
+  form: {
+    name: {
+      label: "Name",
+      placeholder: "Your name",
     },
-    {
-      title: "Ubuntu desktop",
-      description:
-        "Functional copy of Ubuntu 22.0.4 desktop, calendar, terminal, code editor among others",
-      problem:
-        "Demonstrating complex state management and component architecture in a real-world application scenario.",
-      solution:
-        "Recreated Ubuntu desktop environment using Angular and NgRx for state management, implementing functional terminal, calendar, and code editor components.",
-      impact:
-        "Showcased advanced Angular skills and state management patterns, demonstrating ability to build complex, interactive applications.",
-      demo_url: "https://github.com/",
-      technologies: ["angular", "tailwindCss", "typeScript", "ngrx"],
-      image:
-        "https://res.cloudinary.com/dy8gpozi6/image/upload/v1765154111/ubuntu_e1zsgq.webp",
-      label: "view ubuntu demo",
+    email: {
+      label: "Email",
+      placeholder: "your@email.com",
     },
-    {
-      title: "Retro Blog",
-      description:
-        "Developed with Nes CSS library, features small static content blogs and uses CSS Scroll Animations",
-      problem:
-        "Creating an engaging blog experience with unique retro aesthetics while maintaining modern web performance.",
-      solution:
-        "Leveraged Astro for static site generation and Nes CSS for retro styling, implementing CSS scroll animations for interactive reading experience.",
-      impact:
-        "Achieved 95+ Lighthouse score with unique visual identity, demonstrating ability to blend creativity with performance.",
-      demo_url: "https://retro-blog-two.vercel.app/",
-      technologies: ["astro", "css", "typeScript"],
-      image:
-        "https://res.cloudinary.com/dy8gpozi6/image/upload/v1765154110/retro_blog_fejpmv.webp",
-      label: "view retro blog demo",
+    subject: {
+      label: "Subject",
+      placeholder: "Project inquiry",
     },
-    {
-      title: "Switch 2 Clone",
-      description:
-        "Developed using viewport units to achieve a responsive design on a larger scale",
-      problem:
-        "Creating a pixel-perfect responsive clone of Nintendo Switch 2 landing page across all device sizes.",
-      solution:
-        "Utilized Vue 3 and Tailwind CSS with viewport units for fluid scaling, ensuring consistent visual experience across devices.",
-      impact:
-        "Delivered a responsive design that scales perfectly from mobile to 4K displays, showcasing advanced CSS and responsive design skills.",
-      demo_url: "https://dainty-pika-231bcd.netlify.app/",
-      technologies: ["vue", "tailwindCss", "typeScript"],
-      image:
-        "https://res.cloudinary.com/dy8gpozi6/image/upload/v1765154111/nintendo_shots_b0pr6w.webp",
-      label: "view switch 2 clone demo",
+    message: {
+      label: "Message",
+      placeholder: "Tell me about your project...",
     },
-  ],
+    submit: "Send Message",
+  },
 
-  extraProjects: [
-    {
-      title: "Angular Projects",
-      icon: "Angular",
-      description: "Some of my projects made with Angular.",
-      link: "https://entry-page-angular.vercel.app/",
-    },
-    {
-      title: "React Projects",
-      icon: "React",
-      link: "https://react-showcase-three.vercel.app/",
-      description: "Some of my projects made with React and Nextjs.",
-    },
-    {
-      title: "Vue Projects",
-      icon: "Vuejs",
-      link: "https://vue-showcase-8bg.pages.dev/",
-      description: "Some of my projects made with Vue.",
-    },
-  ],
+  skills: {
+    sectionTitle: "My Skills",
+    sectionDescription:
+      "A showcase of my technical proficiencies and expertise, reflecting the tools and technologies I leverage in my projects.",
+    list: [
+      {
+        title: "My Stack",
+        techs: [
+          { color: "#13AA52", icon: "devicon:mongodb" },
+          { color: "#9e9e9e", icon: "devicon:express" },
+          { color: "#DD0031", icon: "devicon:angular" },
+          { color: "#339933", icon: "devicon:nodejs" },
+        ],
+      },
+      {
+        title: "Frontend",
+        techs: [
+          { color: "#E44D26", icon: "devicon:html5" },
+          { color: "#4884B7", icon: "devicon:css3" },
+          { color: "#F0DB4F", icon: "devicon:javascript" },
+          { color: "#007ACC", icon: "devicon:typescript" },
+          { color: "#00d8ff", icon: "devicon:react" },
+          { color: "#9e9e9e", icon: "devicon:nextjs" },
+          { color: "#ff5d01", icon: "devicon:astro" },
+          { color: "#CC6699", icon: "devicon:sass" },
+          { color: "#06B6D4", icon: "devicon:tailwindcss" },
+          { color: "#d2227d", icon: "devicon:ngrx" },
+        ],
+      },
+      {
+        title: "Backend",
+        techs: [
+          { color: "#ffc331", icon: "devicon:python" },
+          { color: "#009688", icon: "devicon:fastapi" },
+          { color: "#E0234E", icon: "devicon:nestjs" },
+          { color: "#ED8B00", icon: "devicon:java" },
+          { color: "#6DB33F", icon: "devicon:spring" },
+        ],
+      },
+      {
+        title: "Others",
+        techs: [
+          { color: "#42b883", icon: "devicon:vuejs" },
+          { color: "#00DC82", icon: "devicon:nuxtjs" },
+          { color: "#8C38EF", icon: "devicon:bootstrap" },
+        ],
+      },
+      {
+        title: "Tools",
+        techs: [
+          { color: "#F05032", icon: "devicon:git" },
+          { color: "#9e9e9e", icon: "devicon:github" },
+          { color: "#2496ED", icon: "devicon:docker" },
+          { color: "#0079BF", icon: "devicon:trello" },
+        ],
+      },
+    ],
+  },
+
+  projects: {
+    sectionTitle: "Projects",
+    sectionDescription:
+      "My personal selection of frontend projects, where I highlight examples that showcase my approach to web development focused on quality and the user.",
+    list: [
+      {
+        title: "Ecommerce",
+        description:
+          "Ecommerce with authentication system, shopping cart, notifications, and local storage usage",
+        problem:
+          "Users needed a seamless shopping experience with persistent cart data and real-time notifications for order updates.",
+        solution:
+          "Built a full-featured ecommerce platform with Angular, implementing JWT authentication, local storage for cart persistence, and a notification system for order tracking.",
+        impact:
+          "Created an intuitive shopping experience with 40% faster checkout process and improved user retention through persistent cart functionality.",
+        demo_url: "https://clior.vercel.app/",
+        technologies: ["angular", "sass", "typeScript", "flowbite"],
+        image:
+          "https://res.cloudinary.com/dy8gpozi6/image/upload/v1765154110/clior_biw8pq.webp",
+        label: "view ecommerce demo",
+      },
+      {
+        title: "Ubuntu desktop",
+        description:
+          "Functional copy of Ubuntu 22.0.4 desktop, calendar, terminal, code editor among others",
+        problem:
+          "Demonstrating complex state management and component architecture in a real-world application scenario.",
+        solution:
+          "Recreated Ubuntu desktop environment using Angular and NgRx for state management, implementing functional terminal, calendar, and code editor components.",
+        impact:
+          "Showcased advanced Angular skills and state management patterns, demonstrating ability to build complex, interactive applications.",
+        demo_url: "https://github.com/",
+        technologies: ["angular", "tailwindCss", "typeScript", "ngrx"],
+        image:
+          "https://res.cloudinary.com/dy8gpozi6/image/upload/v1765154111/ubuntu_e1zsgq.webp",
+        label: "view ubuntu demo",
+      },
+      {
+        title: "Retro Blog",
+        description:
+          "Developed with Nes CSS library, features small static content blogs and uses CSS Scroll Animations",
+        problem:
+          "Creating an engaging blog experience with unique retro aesthetics while maintaining modern web performance.",
+        solution:
+          "Leveraged Astro for static site generation and Nes CSS for retro styling, implementing CSS scroll animations for interactive reading experience.",
+        impact:
+          "Achieved 95+ Lighthouse score with unique visual identity, demonstrating ability to blend creativity with performance.",
+        demo_url: "https://retro-blog-two.vercel.app/",
+        technologies: ["astro", "css", "typeScript"],
+        image:
+          "https://res.cloudinary.com/dy8gpozi6/image/upload/v1765154110/retro_blog_fejpmv.webp",
+        label: "view retro blog demo",
+      },
+      {
+        title: "Switch 2 Clone",
+        description:
+          "Developed using viewport units to achieve a responsive design on a larger scale",
+        problem:
+          "Creating a pixel-perfect responsive clone of Nintendo Switch 2 landing page across all device sizes.",
+        solution:
+          "Utilized Vue 3 and Tailwind CSS with viewport units for fluid scaling, ensuring consistent visual experience across devices.",
+        impact:
+          "Delivered a responsive design that scales perfectly from mobile to 4K displays, showcasing advanced CSS and responsive design skills.",
+        demo_url: "https://dainty-pika-231bcd.netlify.app/",
+        technologies: ["vue", "tailwindCss", "typeScript"],
+        image:
+          "https://res.cloudinary.com/dy8gpozi6/image/upload/v1765154111/nintendo_shots_b0pr6w.webp",
+        label: "view switch 2 clone demo",
+      },
+    ],
+  },
+
+  extras: {
+    sectionTitle: "Extras",
+    sectionDescription:
+      "Keep exploring: these projects also tell my story as a developer.",
+    stats: [
+      {
+        value: "3+",
+        label: "Frameworks",
+        gradient: "bg-linear-to-r from-cyan-400 to-blue-400",
+      },
+      {
+        value: "100%",
+        label: "Passion",
+        gradient: "bg-linear-to-r from-purple-400 to-pink-400",
+      },
+    ],
+    list: [
+      {
+        title: "Angular Projects",
+        icon: "Angular",
+        description: "Some of my projects made with Angular.",
+        link: "https://entry-page-angular.vercel.app/",
+      },
+      {
+        title: "React Projects",
+        icon: "React",
+        link: "https://react-showcase-three.vercel.app/",
+        description: "Some of my projects made with React and Nextjs.",
+      },
+      {
+        title: "Vue Projects",
+        icon: "Vuejs",
+        link: "https://vue-showcase-8bg.pages.dev/",
+        description: "Some of my projects made with Vue.",
+      },
+    ],
+  },
+
+  contactSection: {
+    title: "Get in touch",
+    description:
+      "Do you have a project or want to develop one? Fill out the form and I will get in touch with you soon.",
+    info: [
+      {
+        icon: "mdi:email-outline",
+        label: "Email",
+        value: "xamperu3@gmail.com",
+      },
+      {
+        icon: "mdi:map-marker-outline",
+        label: "Location",
+        value: "Lima, Peru",
+      },
+      {
+        icon: "mdi:clock-outline",
+        label: "Response Time",
+        value: "Within 24 hours",
+      },
+    ],
+  },
 
   navLinks: [
     {

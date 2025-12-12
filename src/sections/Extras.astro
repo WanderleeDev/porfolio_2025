@@ -5,24 +5,12 @@ import DecorativeAccent from "../components/base/DecorativeAccent.astro";
 import GridFramewrokCards from "../components/GridFramewrokCards.astro";
 import CardGlassA from "../components/CardGlassA.astro";
 import { getTranslations } from "../i18n/utils";
-import { ui } from "../i18n/ui";
 
 const lang = Astro.currentLocale as "es" | "en";
-const extraProjects = ui[lang].extraProjects;
 const t = getTranslations(lang);
-
-const statsData = [
-  {
-    value: "3+",
-    label: "Frameworks",
-    gradient: "bg-linear-to-r from-cyan-400 to-blue-400",
-  },
-  {
-    value: "100%",
-    label: lang === "es" ? "Pasión" : "Passion",
-    gradient: "bg-linear-to-r from-purple-400 to-pink-400",
-  },
-];
+const extrasT = t("extras");
+const extraProjects = extrasT.list;
+const statsData = extrasT.stats;
 ---
 
 <section
@@ -33,14 +21,10 @@ const statsData = [
     <div class="grid h-full lg:grid-cols-2 gap-12 lg:gap-16 lg:items-center">
       <header class="extras-header space-y-6">
         <DecorativeAccent />
-        <Title id="extras-title"> Extras </Title>
+        <Title id="extras-title"> {extrasT.sectionTitle} </Title>
 
         <Paragraph id="extras-description">
-          {
-            lang === "es"
-              ? "Sigue explorando: estos proyectos también cuentan mi historia como desarrollador."
-              : "Keep exploring: these projects also tell my story as a developer."
-          }
+          {extrasT.sectionDescription}
         </Paragraph>
 
         <div class="stats-grid hidden lg:grid lg:grid-cols-2 gap-4 mt-12">

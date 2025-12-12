@@ -1,6 +1,7 @@
 ---
 import ExternalLink from "../ExternalLink.astro";
 import LanguagePicker from "../../components/LanguagePicker.astro";
+import { getTranslations } from "../../i18n/utils";
 
 interface Props {
   id: string;
@@ -11,23 +12,9 @@ interface Props {
 }
 
 const { id, sections } = Astro.props;
-const socialLinks = [
-  {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/in/wanderlee-max/",
-    icon: "mdi:linkedin",
-  },
-  {
-    name: "Github",
-    url: "https://github.com/WanderleeDev",
-    icon: "mdi:github",
-  },
-  {
-    name: "Portfolio",
-    url: "",
-    icon: "mdi:briefcase",
-  },
-];
+const lang = Astro.currentLocale as "es" | "en";
+const t = getTranslations(lang);
+const socialLinks = t("social");
 ---
 
 <div
@@ -45,12 +32,15 @@ const socialLinks = [
         </a>
       ))
     }
-    <LanguagePicker />
+    <LanguagePicker id="language-picker" />
   </nav>
-  <div class="flex flex-row flex-wrap gap-4 h-1/5 justify-center items-center">
+  <div
+    id="social-links"
+    class="flex flex-row flex-wrap gap-4 h-1/5 justify-center items-center"
+  >
     {
       socialLinks.map(({ name, url, icon }) => (
-        <ExternalLink name={name} url={url} icon={icon} />
+        <ExternalLink name={name} url={url} icon={icon} design="simple" />
       ))
     }
   </div>
@@ -70,8 +60,19 @@ const socialLinks = [
     const menuIcon = $("#menu-icon");
     const closeIcon = $("#close-icon");
     const links = $$(".mobile-link");
+    const languagePicker = $("#language-picker");
+    const socialLinks = $("#social-links");
 
-    if (!btn || !menu || !menuIcon || !closeIcon || !links?.length) return;
+    if (
+      !btn ||
+      !menu ||
+      !menuIcon ||
+      !closeIcon ||
+      !links?.length ||
+      !socialLinks ||
+      !languagePicker
+    )
+      return;
 
     const mm = gsap.matchMedia();
     let isOpen = false;
@@ -85,26 +86,46 @@ const socialLinks = [
         {
           opacity: 1,
           pointerEvents: "all",
-          duration: 0.3,
-          ease: "power2.out",
+          duration: 0.4,
+          ease: "power3.out",
         },
         "-=0.1"
       )
       .from(
-        links,
+        [links],
         {
           y: 20,
           opacity: 0,
-          stagger: 0.1,
-          duration: 0.4,
-          ease: "power2.out",
+          stagger: 0.05,
+          duration: 0.5,
+          ease: "power3.out",
         },
-        "-=0.1"
+        "-=0.2"
+      )
+      .fromTo(
+        [languagePicker, socialLinks],
+        {
+          y: 20,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.5,
+          ease: "power3.out",
+        },
+        "-=0.2"
       );
-
     const toggle = () => {
       isOpen ? tl.reverse() : tl.play();
       isOpen = !isOpen;
+    };
+    const clearProps = () => {
+      gsap.set(
+        [menu, menuIcon, closeIcon, links, languagePicker, socialLinks],
+        { clearProps: "all" }
+      );
     };
 
     btn.addEventListener("click", toggle);
@@ -115,14 +136,14 @@ const socialLinks = [
       let { isMobile } = context.conditions as GsapBreakpointsType;
 
       if (isMobile) {
-        gsap.set([menu, menuIcon, closeIcon, links], { clearProps: "all" });
+        clearProps();
         tl.invalidate().progress(0).pause();
         isOpen = false;
         return;
       }
 
       isOpen = false;
-      gsap.set([menu, menuIcon, closeIcon, links], { clearProps: "all" });
+      clearProps();
     });
   }
 

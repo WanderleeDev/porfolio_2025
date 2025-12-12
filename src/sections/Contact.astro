@@ -5,26 +5,11 @@ import Paragraph from "../components/typography/Paragraph.astro";
 import DecorativeAccent from "../components/base/DecorativeAccent.astro";
 import Title from "../components/typography/Title.astro";
 import CardGlassB from "../components/CardGlassB.astro";
+import { getTranslations } from "../i18n/utils";
 
 const lang = Astro.currentLocale as "es" | "en";
-
-const contactInfo = [
-  {
-    icon: "mdi:email-outline",
-    label: "Email",
-    value: "xamperu3@gmail.com",
-  },
-  {
-    icon: "mdi:map-marker-outline",
-    label: lang === "es" ? "Ubicación" : "Location",
-    value: "Lima, Peru",
-  },
-  {
-    icon: "mdi:clock-outline",
-    label: lang === "es" ? "Tiempo de Respuesta" : "Response Time",
-    value: lang === "es" ? "Dentro de 24 horas" : "Within 24 hours",
-  },
-];
+const t = getTranslations(lang);
+const contactT = t("contactSection");
 ---
 
 <section id="contact" class="relative min-h-dvh p-4 lg:p-8 overflow-hidden">
@@ -36,20 +21,16 @@ const contactInfo = [
         <DecorativeAccent />
 
         <Title id="contact-title">
-          {lang === "es" ? "Contáctame" : "Get in touch"}
+          {contactT.title}
         </Title>
 
         <Paragraph id="contact-description">
-          {
-            lang === "es"
-              ? "¿Tienes algún proyecto o quieres desarrollar uno? Completa el formulario y me pondré en contacto contigo pronto."
-              : "Do you have a project or want to develop one? Fill out the form and I will get in touch with you soon."
-          }
+          {contactT.description}
         </Paragraph>
 
         <div class="space-y-4 mt-12">
           {
-            contactInfo.map((info) => (
+            contactT.info.map((info) => (
               <CardGlassB
                 icon={info.icon}
                 label={info.label}

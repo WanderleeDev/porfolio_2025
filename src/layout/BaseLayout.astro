@@ -3,9 +3,14 @@ import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import firaSansWoff2 from "@fontsource/fira-sans-extra-condensed/files/fira-sans-extra-condensed-latin-700-normal.woff2?url";
 import Header from "../components/Header/index.astro";
+import { getTranslations } from "../i18n/utils";
+
+const lang = Astro.currentLocale as "es" | "en";
+const t = getTranslations(lang);
+const metaT = t("metadata");
 ---
 
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <link
@@ -24,34 +29,22 @@ import Header from "../components/Header/index.astro";
     />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content="Portfolio of WanderleeDev, a web developer showcasing projects and skills."
-    />
-    <meta
-      name="keywords"
-      content="portfolio, WanderleeDev, web developer, projects, skills"
-    />
+    <meta name="description" content={metaT.description} />
+    <meta name="keywords" content={metaT.keywords} />
     <meta name="author" content="WanderleeDev" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://porfolio-2025-seven.vercel.app/" />
 
-    <title>Portfolio WanderleeDev</title>
-    <meta property="og:title" content="Portfolio WanderleeDev" />
-    <meta
-      property="og:description"
-      content="Portfolio of WanderleeDev, a web developer showcasing projects and skills."
-    />
+    <title>{metaT.title}</title>
+    <meta property="og:title" content={metaT.title} />
+    <meta property="og:description" content={metaT.description} />
     <meta property="og:image" content="/tom.webp" />
     <meta property="og:url" content="https://wanderleev.dev" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Portfolio WanderleeDev" />
+    <meta property="og:site_name" content={metaT.title} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Portfolio WanderleeDev" />
-    <meta
-      name="twitter:description"
-      content="Portfolio of WanderleeDev, a web developer showcasing projects and skills."
-    />
+    <meta name="twitter:title" content={metaT.title} />
+    <meta name="twitter:description" content={metaT.description} />
     <meta name="twitter:image" content="/tom.webp" />
   </head>
   <body

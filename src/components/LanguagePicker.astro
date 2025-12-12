@@ -2,6 +2,11 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
 import Icon from "astro-iconify";
 
+interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
 const lang = Astro.currentLocale as "es" | "en";
 const options = [
   { code: "es", label: "ES", icon: "circle-flags:es" },
@@ -9,27 +14,27 @@ const options = [
 ];
 ---
 
-<div class="relative inline-block text-left picker-container">
+<div id={id} class="relative inline-block text-left picker-container group">
   <button
     type="button"
-    class="picker-btn flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 hover:bg-white/10 transition-colors text-white text-sm font-medium cursor-pointer"
+    class="picker-btn flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 hover:bg-white/10 transition-colors text-white text-sm font-medium focus-within:outline-none focus-within:ring-2 focus-within:ring-white/20"
     aria-haspopup="listbox"
     aria-expanded="false"
     aria-label="Select language"
   >
     <Icon
       name={lang === "es" ? "circle-flags:es" : "circle-flags:us"}
-      class="size-5"
+      class="size-5 pointer-events-none"
     />
     <span class="font-bold uppercase">{lang}</span>
     <Icon
       name="mdi:chevron-down"
-      class="size-4 text-white/70 transition-transform duration-200 chevron-icon"
+      class="size-4 text-white/70 transition-transform duration-200 chevron-icon pointer-events-none"
     />
   </button>
 
   <ul
-    class="picker-menu absolute right-0 mt-2 w-max min-w-[120px] origin-top-right rounded-xl bg-[#1a1a1a] border border-white/10 shadow-xl focus:outline-none opacity-0 scale-95 pointer-events-none transition-all duration-200 z-[100] py-1"
+    class="picker-menu absolute right-0 mt-2 w-max min-w-[120px] origin-top-right rounded-xl bg-[#1a1a1a] border border-white/10 shadow-xl focus:outline-none opacity-0 scale-95 pointer-events-none transition-all duration-200 z-100 py-1 group-focus-within:opacity-100 group-focus-within:scale-100 group-focus-within:pointer-events-auto"
     role="listbox"
   >
     {
@@ -52,80 +57,3 @@ const options = [
     }
   </ul>
 </div>
-
-<script>
-  function setupPicker() {
-    const containers = document.querySelectorAll(".picker-container");
-
-    containers.forEach((container) => {
-      const btn = container.querySelector(".picker-btn");
-      const menu = container.querySelector(".picker-menu");
-      const chevron = container.querySelector(".chevron-icon");
-
-      if (!btn || !menu) return;
-
-      const toggleMenu = (show: boolean) => {
-        btn.setAttribute("aria-expanded", String(show));
-        if (show) {
-          menu.classList.remove("opacity-0", "scale-95", "pointer-events-none");
-          menu.classList.add("opacity-100", "scale-100", "pointer-events-auto");
-          chevron?.classList.add("rotate-180");
-        } else {
-          menu.classList.add("opacity-0", "scale-95", "pointer-events-none");
-          menu.classList.remove(
-            "opacity-100",
-            "scale-100",
-            "pointer-events-auto"
-          );
-          chevron?.classList.remove("rotate-180");
-        }
-      };
-
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const isExpanded = btn.getAttribute("aria-expanded") === "true";
-        // Close all other pickers if any
-        document
-          .querySelectorAll(".picker-btn[aria-expanded='true']")
-          .forEach((otherBtn) => {
-            if (otherBtn !== btn) {
-              const otherContainer = otherBtn.closest(".picker-container");
-              const otherMenu = otherContainer?.querySelector(".picker-menu");
-              const otherChevron =
-                otherContainer?.querySelector(".chevron-icon");
-
-              otherBtn.setAttribute("aria-expanded", "false");
-              otherMenu?.classList.add(
-                "opacity-0",
-                "scale-95",
-                "pointer-events-none"
-              );
-              otherChevron?.classList.remove("rotate-180");
-            }
-          });
-
-        toggleMenu(!isExpanded);
-      });
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!(e.target as HTMLElement).closest(".picker-container")) {
-        document
-          .querySelectorAll(".picker-btn[aria-expanded='true']")
-          .forEach((btn) => {
-            const container = btn.closest(".picker-container");
-            const menu = container?.querySelector(".picker-menu");
-            const chevron = container?.querySelector(".chevron-icon");
-
-            btn.setAttribute("aria-expanded", "false");
-            menu?.classList.add("opacity-0", "scale-95", "pointer-events-none");
-            chevron?.classList.remove("rotate-180");
-          });
-      }
-    });
-  }
-
-  // Setup on load and after view transitions if used
-  setupPicker();
-  document.addEventListener("astro:page-load", setupPicker);
-</script>

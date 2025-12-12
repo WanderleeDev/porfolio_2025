@@ -5,9 +5,10 @@ interface Props {
   name: string;
   url: string;
   icon: string;
+  design?: "default" | "simple";
 }
 
-const { name, url, icon } = Astro.props;
+const { name, url, icon, design = "default" } = Astro.props;
 ---
 
 <a
@@ -21,7 +22,13 @@ const { name, url, icon } = Astro.props;
     name={icon}
     class="w-5 h-5 transition-transform duration-300 group-hover:scale-110 pointer-events-none"
   />
-  <span class="text-sm font-medium tracking-wide pointer-events-none"
-    >{name}</span
-  >
+  {
+    design === "default" ? (
+      <span class="text-sm font-medium tracking-wide pointer-events-none">
+        {name}
+      </span>
+    ) : (
+      <span class="sr-only">{name}</span>
+    )
+  }
 </a>

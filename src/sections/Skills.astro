@@ -5,11 +5,11 @@ import Paragraph from "../components/typography/Paragraph.astro";
 import Title from "../components/typography/Title.astro";
 import SkillCardStacking from "../components/SkillCardStacking.astro";
 import { getTranslations } from "../i18n/utils";
-import { ui } from "../i18n/ui";
 
 const lang = Astro.currentLocale as "es" | "en";
-const skills = ui[lang].skills;
 const t = getTranslations(lang);
+const skillsT = t("skills");
+const skills = skillsT.list;
 
 const maxHeightContainer = `${(skills.length - 2) * 100}vh`;
 ---
@@ -27,14 +27,10 @@ const maxHeightContainer = `${(skills.length - 2) * 100}vh`;
         <DecorativeAccent />
 
         <Title customClass="skills-title">
-          {lang === "es" ? "Mis Habilidades" : "My Skills"}
+          {skillsT.sectionTitle}
         </Title>
         <Paragraph customClass="skills-text w-max-[40ch]">
-          {
-            lang === "es"
-              ? "Una muestra de mis competencias técnicas y experiencia, reflejando las herramientas y tecnologías que utilizo en mis proyectos."
-              : "A showcase of my technical proficiencies and expertise, reflecting the tools and technologies I leverage in my projects."
-          }
+          {skillsT.sectionDescription}
         </Paragraph>
       </div>
 
