@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import BadgeLink from "../components/BadgeLink.astro";
+
+const lang = Astro.currentLocale as "es" | "en";
 ---
 
 <section class="relative min-h-dvh content-center overflow-x-clip">
@@ -8,34 +10,71 @@ import BadgeLink from "../components/BadgeLink.astro";
     id="presentation"
     class="relative z-10 mx-auto text-center text-balance font-bold leading-[0.95] font-fira-sans-extra-condensed flex flex-col justify-center items-center gap-1 text-stone-100 font-banner h-fit w-fit"
   >
-    <span class="font-inherit relative">
-      Inspiring
-      <Image
-        src="https://cdn.prod.website-files.com/650adb68d76aea2d4f381df5/651c8c15c7a7f650f1c3b9b5_star.webp"
-        alt="Star"
-        height={200}
-        width={200}
-        class="size-20 absolute left-0 top-2/4 -translate-y-1/2 -translate-x-full -z-10"
-      />
-    </span>
-    <span class="font-inherit">
-      <span class="relative font-inherit inline-block">
-        <span
-          id="presentation-accent"
-          class="absolute inset-0 -translate-x-4 w-full h-full -skew-x-12 bg-yellow-500 -z-10 rounded-tr-4xl will-change-transform rounded-bl-4xl mix-blend-difference scale-105 origin-left"
-        ></span>
-        <span
-          id="presentation-accent-text"
-          class="font-inherit z-10 text-gray-900 inline-block mix-blend-plus-darker"
-        >
-          Start-ups,
-        </span>
-      </span>
-      one
-    </span>
-    <span class="relative font-[inherit] inline-block first-letter:skew-x-12"
-      >story at <span class="font-inherit text-yellow-500">a time.</span>
-    </span>
+    {
+      lang === "es" ? (
+        <>
+          <span class="font-inherit relative">
+            Inspirando
+            <Image
+              src="https://cdn.prod.website-files.com/650adb68d76aea2d4f381df5/651c8c15c7a7f650f1c3b9b5_star.webp"
+              alt="Star"
+              height={200}
+              width={200}
+              class="size-20 absolute left-0 top-2/4 -translate-y-1/2 -translate-x-full -z-10"
+            />
+          </span>
+          <span class="font-inherit">
+            <span class="relative font-inherit inline-block">
+              <span
+                id="presentation-accent"
+                class="absolute inset-0 -translate-x-4 w-full h-full -skew-x-12 bg-yellow-500 -z-10 rounded-tr-4xl will-change-transform rounded-bl-4xl mix-blend-difference scale-105 origin-left"
+              />
+              <span
+                id="presentation-accent-text"
+                class="font-inherit z-10 text-gray-900 inline-block mix-blend-plus-darker"
+              >
+                Start-ups,
+              </span>
+            </span>
+            una
+          </span>
+          <span class="relative font-[inherit] inline-block first-letter:skew-x-12">
+            historia a la <span class="font-inherit text-yellow-500">vez.</span>
+          </span>
+        </>
+      ) : (
+        <>
+          <span class="font-inherit relative">
+            Inspiring
+            <Image
+              src="https://cdn.prod.website-files.com/650adb68d76aea2d4f381df5/651c8c15c7a7f650f1c3b9b5_star.webp"
+              alt="Star"
+              height={200}
+              width={200}
+              class="size-20 absolute left-0 top-2/4 -translate-y-1/2 -translate-x-full -z-10"
+            />
+          </span>
+          <span class="font-inherit">
+            <span class="relative font-inherit inline-block">
+              <span
+                id="presentation-accent"
+                class="absolute inset-0 -translate-x-4 w-full h-full -skew-x-12 bg-yellow-500 -z-10 rounded-tr-4xl will-change-transform rounded-bl-4xl mix-blend-difference scale-105 origin-left"
+              />
+              <span
+                id="presentation-accent-text"
+                class="font-inherit z-10 text-gray-900 inline-block mix-blend-plus-darker"
+              >
+                Start-ups,
+              </span>
+            </span>
+            one
+          </span>
+          <span class="relative font-[inherit] inline-block first-letter:skew-x-12">
+            story at <span class="font-inherit text-yellow-500">a time.</span>
+          </span>
+        </>
+      )
+    }
     <span
       class="rotate-12 absolute -z-10 top-10/12 left-7/12 md:top-0 md:right-0 md:left-auto md:-translate-y-1/4 md:translate-x-1/12"
     >

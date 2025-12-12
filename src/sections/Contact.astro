@@ -6,6 +6,8 @@ import DecorativeAccent from "../components/base/DecorativeAccent.astro";
 import Title from "../components/typography/Title.astro";
 import CardGlassB from "../components/CardGlassB.astro";
 
+const lang = Astro.currentLocale as "es" | "en";
+
 const contactInfo = [
   {
     icon: "mdi:email-outline",
@@ -14,13 +16,13 @@ const contactInfo = [
   },
   {
     icon: "mdi:map-marker-outline",
-    label: "Location",
+    label: lang === "es" ? "Ubicación" : "Location",
     value: "Lima, Peru",
   },
   {
     icon: "mdi:clock-outline",
-    label: "Response Time",
-    value: "Within 24 hours",
+    label: lang === "es" ? "Tiempo de Respuesta" : "Response Time",
+    value: lang === "es" ? "Dentro de 24 horas" : "Within 24 hours",
   },
 ];
 ---
@@ -33,11 +35,16 @@ const contactInfo = [
       <div class="space-y-6">
         <DecorativeAccent />
 
-        <Title id="contact-title"> Get in touch </Title>
+        <Title id="contact-title">
+          {lang === "es" ? "Contáctame" : "Get in touch"}
+        </Title>
 
         <Paragraph id="contact-description">
-          Do you have a project or want to develop one? Fill out the form and I
-          will get in touch with you soon.
+          {
+            lang === "es"
+              ? "¿Tienes algún proyecto o quieres desarrollar uno? Completa el formulario y me pondré en contacto contigo pronto."
+              : "Do you have a project or want to develop one? Fill out the form and I will get in touch with you soon."
+          }
         </Paragraph>
 
         <div class="space-y-4 mt-12">

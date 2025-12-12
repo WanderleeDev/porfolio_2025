@@ -9,6 +9,13 @@ export default defineConfig({
   },
 
   integrations: [],
+  i18n: {
+    defaultLocale: "es",
+    locales: ["es", "en"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   server: {
     allowedHosts: [
       "localhost",

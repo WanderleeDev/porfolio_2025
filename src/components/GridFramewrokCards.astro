@@ -1,35 +1,58 @@
 ---
 import FrameworkCard from "./FrameworkCard.astro";
 
-const extras = [
-  {
-    title: "React",
-    icon: "devicon:react",
-    url: "https://react-showcase-three.vercel.app/",
-    color: "from-cyan-500/20 to-blue-500/20",
-    hoverColor: "hover:from-cyan-500/30 hover:to-blue-500/30",
-  },
-  {
-    title: "Angular",
-    icon: "devicon:angular",
-    url: "https://entry-page-angular.vercel.app/en-US/",
-    color: "from-red-500/20 to-pink-500/20",
-    hoverColor: "hover:from-red-500/30 hover:to-pink-500/30",
-  },
-  {
-    title: "Vue",
-    icon: "devicon:vuejs",
-    url: "https://vue-showcase-8bg.pages.dev/",
-    color: "from-green-500/20 to-emerald-500/20",
-    hoverColor: "hover:from-green-500/30 hover:to-emerald-500/30",
-  },
-];
+interface Props {
+  extras: {
+    title: string;
+    icon: string;
+    link: string;
+  }[];
+}
+
+const { extras } = Astro.props;
+
+// Helper to get colors based on title (since they were hardcoded in the loop before)
+// Or we can move this logic to the parent. Let's keep it simple and just map the data.
+// Wait, the original code had 'color' and 'hoverColor' hardcoded in the array.
+// The new data structure in index.ts DOES NOT have color/hoverColor.
+// I need to add them back in the parent or handle them here.
+// Let's handle them here based on the framework name to keep data clean,
+// OR update data/index.ts. Updating data/index.ts is cleaner but more work.
+// Let's map it here for now to avoid breaking changes in data structure structure if not needed.
+
+const getColors = (title: string) => {
+  const lower = title.toLowerCase();
+  if (lower.includes("react"))
+    return {
+      color: "from-cyan-500/20 to-blue-500/20",
+      hoverColor: "hover:from-cyan-500/30 hover:to-blue-500/30",
+    };
+  if (lower.includes("angular"))
+    return {
+      color: "from-red-500/20 to-pink-500/20",
+      hoverColor: "hover:from-red-500/30 hover:to-pink-500/30",
+    };
+  if (lower.includes("vue"))
+    return {
+      color: "from-green-500/20 to-emerald-500/20",
+      hoverColor: "hover:from-green-500/30 hover:to-emerald-500/30",
+    };
+  return {
+    color: "from-gray-500/20 to-slate-500/20",
+    hoverColor: "hover:from-gray-500/30 hover:to-slate-500/30",
+  };
+};
+
+const extrasWithColors = extras.map((e) => ({
+  ...e,
+  ...getColors(e.title),
+}));
 ---
 
 <div class="extras-cards-container relative">
   <ul class="grid grid-cols-1 md:grid-cols-12 gap-6 relative z-10">
     {
-      extras.map(({ title, icon, url, color, hoverColor }, i) => (
+      extrasWithColors.map(({ title, icon, link, color, hoverColor }, i) => (
         <li
           class={`extras-card-item
                 ${i === 0 ? "md:col-span-6" : ""}
@@ -39,10 +62,10 @@ const extras = [
         >
           <FrameworkCard
             title={title}
-            icon={icon}
+            icon={`devicon:${icon.toLowerCase()}`}
             color={color}
             hoverColor={hoverColor}
-            href={url}
+            href={link}
           />
         </li>
       ))

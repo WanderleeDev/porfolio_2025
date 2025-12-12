@@ -4,6 +4,12 @@ import Paragraph from "../components/typography/Paragraph.astro";
 import DecorativeAccent from "../components/base/DecorativeAccent.astro";
 import GridFramewrokCards from "../components/GridFramewrokCards.astro";
 import CardGlassA from "../components/CardGlassA.astro";
+import { getTranslations } from "../i18n/utils";
+import { ui } from "../i18n/ui";
+
+const lang = Astro.currentLocale as "es" | "en";
+const extraProjects = ui[lang].extraProjects;
+const t = getTranslations(lang);
 
 const statsData = [
   {
@@ -13,7 +19,7 @@ const statsData = [
   },
   {
     value: "100%",
-    label: "Passion",
+    label: lang === "es" ? "Pasión" : "Passion",
     gradient: "bg-linear-to-r from-purple-400 to-pink-400",
   },
 ];
@@ -30,8 +36,11 @@ const statsData = [
         <Title id="extras-title"> Extras </Title>
 
         <Paragraph id="extras-description">
-          Sigue explorando: estos proyectos también cuentan mi historia como
-          desarrollador.
+          {
+            lang === "es"
+              ? "Sigue explorando: estos proyectos también cuentan mi historia como desarrollador."
+              : "Keep exploring: these projects also tell my story as a developer."
+          }
         </Paragraph>
 
         <div class="stats-grid hidden lg:grid lg:grid-cols-2 gap-4 mt-12">
@@ -43,7 +52,7 @@ const statsData = [
         </div>
       </header>
 
-      <GridFramewrokCards />
+      <GridFramewrokCards extras={extraProjects} />
     </div>
   </div>
 </section>

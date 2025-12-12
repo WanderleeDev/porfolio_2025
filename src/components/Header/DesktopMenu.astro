@@ -1,4 +1,6 @@
 ---
+import LanguagePicker from "../LanguagePicker.astro";
+
 interface Props {
   sections: {
     name: string;
@@ -11,13 +13,16 @@ const { sections } = Astro.props;
 
 <nav class="flex flex-row gap-10 capitalize items-center">
   {
-    sections.map(({ name }) => (
+    sections.map(({ name, label }) => (
       <a
         href={`#${name}`}
         class="text-white text-sm font-fira-sans-extra-condensed text-[1.3vw] font-bold tracking-wider hover:text-amber-400 transition-colors py-2 hidden md:block"
       >
-        {name}
+        {label}
       </a>
     ))
   }
+  <div class="hidden md:block ml-4">
+    <LanguagePicker />
+  </div>
 </nav>

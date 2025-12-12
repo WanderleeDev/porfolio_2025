@@ -2,8 +2,13 @@
 import Paragraph from "./typography/Paragraph.astro";
 import { Image } from "astro:assets";
 import ExternalLink from "./ExternalLink.astro";
+import { getTranslations } from "../i18n/utils";
 
-const developText = "Developed by WanderleeDev 2025";
+const lang = Astro.currentLocale as "es" | "en";
+const t = getTranslations(lang);
+
+const developText = t("footer.developedBy");
+
 const socialLinks = [
   {
     name: "LinkedIn",
@@ -50,8 +55,11 @@ const socialLinks = [
       <Paragraph
         customClass="text-neutral-400 md:text-lg leading-relaxed text-center md:text-left"
       >
-        Feel free to reach out for collaborations or just a friendly chat.
-        Always open to new opportunities and interesting projects.
+        {
+          lang === "es"
+            ? "Siéntete libre de contactarme para colaboraciones o simplemente una charla amistosa. Siempre abierto a nuevas oportunidades y proyectos interesantes."
+            : "Feel free to reach out for collaborations or just a friendly chat. Always open to new opportunities and interesting projects."
+        }
       </Paragraph>
 
       <nav aria-label="Social media links">

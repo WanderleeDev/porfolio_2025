@@ -1,6 +1,17 @@
 ---
 import Icon from "astro-iconify";
-import { skills } from "../data";
+
+interface Props {
+  skills: {
+    title: string;
+    techs: {
+      color: string;
+      icon: string;
+    }[];
+  }[];
+}
+
+const { skills } = Astro.props;
 ---
 
 <div

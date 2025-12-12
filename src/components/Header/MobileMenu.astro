@@ -1,5 +1,6 @@
 ---
 import ExternalLink from "../ExternalLink.astro";
+import LanguagePicker from "../../components/LanguagePicker.astro";
 
 interface Props {
   id: string;
@@ -33,17 +34,18 @@ const socialLinks = [
   id={id}
   class="fixed inset-0 w-full h-screen bg-black/60 backdrop-blur-2xl z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-300"
 >
-  <nav class="flex flex-col gap-16 justify-center items-center h-4/5">
+  <nav class="flex flex-col gap-12 justify-center items-center h-4/5">
     {
-      sections.map(({ name }) => (
+      sections.map(({ name, label }) => (
         <a
           href={`#${name}`}
           class="mobile-link text-white text-3xl font-fira-sans-extra-condensed font-bold tracking-widest hover:text-amber-400 transition-colors capitalize"
         >
-          {name}
+          {label}
         </a>
       ))
     }
+    <LanguagePicker />
   </nav>
   <div class="flex flex-row flex-wrap gap-4 h-1/5 justify-center items-center">
     {
