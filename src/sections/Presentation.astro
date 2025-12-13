@@ -75,47 +75,46 @@ const presentationT = t("presentation");
   import { $ } from "../utils/selectors";
 
   function animatePresentation() {
-    const accentElement = $("#presentation-accent");
-    const accentText = $("#presentation-accent-text");
+    const elements = [
+      "presentation-start-image",
+      "presentation-start",
+      "presentation-accent",
+      "presentation-accent-text",
+      "presentation-middle",
+      "presentation-end-prefix",
+      "presentation-end-highlight",
+      "avatar-header",
+      "badge",
+      "badge-outer",
+    ].map((id) => $(`#${id}`));
 
-    const presentationStartImage = $("#presentation-start-image");
-    const presentationStart = $("#presentation-start");
-    const presentationAccent = $("#presentation-accent");
-    const presentationAccentText = $("#presentation-accent-text");
-    const presentationMiddle = $("#presentation-middle");
-    const presentationEndPrefix = $("#presentation-end-prefix");
-    const presentationEndHighlight = $("#presentation-end-highlight");
+    if (elements.some((el) => !el)) return;
 
-    const avatarHeader = $("#avatar-header");
-    const badge = $("#badge");
-    const badgeOuter = $("#badge-outer");
+    const [
+      presentationStartImage,
+      presentationStart,
+      accentElement,
+      accentText,
+      presentationMiddle,
+      presentationEndPrefix,
+      presentationEndHighlight,
+      avatarHeader,
+      badge,
+      badgeOuter,
+    ] = elements;
 
-    if (
-      !presentationStart ||
-      !presentationStartImage ||
-      !presentationAccent ||
-      !presentationAccentText ||
-      !presentationMiddle ||
-      !presentationEndPrefix ||
-      !presentationEndHighlight ||
-      !avatarHeader ||
-      !badge ||
-      !badgeOuter
-    ) {
-      return;
-    }
-
-    const presentationEndPrefixSplit = new SplitText(presentationEndPrefix, {
-      type: "chars",
-    });
     const presentationStartSplit = new SplitText(presentationStart, {
       type: "chars",
     });
+    const presentationEndPrefixSplit = new SplitText(presentationEndPrefix, {
+      type: "chars",
+    });
+
     gsap.set(presentationStartSplit.chars, {
       className: "inline-block will-change-transform font-inherit",
       scale: 0,
     });
-    gsap.set(accentElement, { scaleX: 0 });
+    gsap.set(accentElement, { scaleX: 0, transformOrigin: "left" });
     gsap.set([accentText, presentationEndHighlight], { opacity: 0 });
     gsap.set(accentText, { scale: 20 });
     gsap.set(presentationEndHighlight, { scale: 0 });
@@ -127,84 +126,90 @@ const presentationT = t("presentation");
     gsap.set(badge, { opacity: 0, x: 100, rotate: 45 });
     gsap.set(badgeOuter, { opacity: 0 });
 
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
     tl.to(presentationStartSplit.chars, {
       scale: 1,
       ease: "back.out(1.7)",
-      duration: 1,
-      stagger: 0.05,
-      onStart: () => {
-        presentationStartImage.classList.add("animate-spin");
-      },
-      onComplete: () => {
-        setTimeout(
-          () => presentationStartImage.classList.remove("animate-spin"),
-          300
-        );
-      },
+      duration: 0.5,
+      stagger: 0.03,
+      onStart: () => presentationStartImage?.classList.add("animate-spin"),
     })
-      .to(accentElement, {
-        scaleX: 1.05,
-        transformOrigin: "left",
-        duration: 1,
-        ease: "power3.out",
-      })
-      .to(accentText, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.7,
-        ease: "power3.out",
-      })
+      .to(
+        presentationStartImage,
+        {
+          duration: 0.2,
+          delay: 0.15,
+          onComplete: () =>
+            presentationStartImage?.classList.remove("animate-spin"),
+        },
+        "<"
+      )
+      .to(
+        accentElement,
+        {
+          scaleX: 1.05,
+          duration: 0.4,
+        },
+        "-=0.15"
+      )
+      .to(
+        accentText,
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+        },
+        "<"
+      )
       .to(presentationMiddle, {
         y: "0%",
-        duration: 0.7,
-        ease: "power3.out",
+        duration: 0.3,
         opacity: 1,
       })
       .to(presentationEndPrefixSplit.chars, {
         opacity: 1,
         y: "0%",
-        duration: 0.4,
-        ease: "power3.out",
-        stagger: 0.05,
-      })
-      .to(presentationEndHighlight, {
-        scale: 1,
         duration: 0.3,
-        opacity: 1,
-        ease: "back.out(1.7)",
+        stagger: 0.03,
       })
+      .to(
+        presentationEndHighlight,
+        {
+          scale: 1,
+          opacity: 1,
+          ease: "back.out(1.7)",
+          duration: 0.4,
+        },
+        "<+=0.05"
+      )
       .to(
         avatarHeader,
         {
           opacity: 0,
-          duration: 0.7,
+          duration: 0.4,
           x: "-100%",
           rotate: -25,
-          ease: "power3.out",
         },
-        "<"
+        "-=0.2"
       )
       .to(
         badge,
         {
           opacity: 1,
-          duration: 0.7,
+          duration: 0.5,
           x: "0",
           rotate: 8,
-          ease: "power3.out",
         },
-        "-=0.2"
+        "<"
       )
       .to(
         badgeOuter,
         {
           opacity: 1,
-          duration: 0.4,
-          ease: "power3.out",
+          duration: 0.3,
         },
-        "-=0.2"
+        "<+=0.1"
       );
   }
 
