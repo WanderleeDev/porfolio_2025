@@ -202,7 +202,7 @@ export const es = {
     attr_data: "projects",
   },
 
-  extras: {
+  playground: {
     sectionTitle: "Laboratorio",
     sectionDescription: "Experimentos y demos donde pruebo nuevas tecnologías.",
     stats: [
@@ -237,7 +237,7 @@ export const es = {
         description: "Explora mis aplicaciones y componentes.",
       },
     ],
-    attr_data: "extras",
+    attr_data: "playground",
   },
 
   contactSection: {
@@ -278,10 +278,10 @@ export const es = {
       attr_data: "skills",
     },
     {
-      name: "extras",
+      name: "playground",
       icon: "ri:archive-2-line",
       label: "Laboratorio",
-      attr_data: "extras",
+      attr_data: "playground",
     },
     {
       name: "contact",

@@ -8,6 +8,7 @@ const GsapBreakpoints = {
   isMobile: "(max-width: 768px)",
   isTablet: "(min-width: 769px) and (max-width: 1024px)",
   isDesktop: "(min-width: 1024px)",
+  isLargeDesktop: "(min-width: 1440px)",
   reduceMotion: "(prefers-reduced-motion: reduce)",
 } as const;
 

@@ -201,7 +201,7 @@ export const en = {
     attr_data: "projects",
   },
 
-  extras: {
+  playground: {
     sectionTitle: "Playground",
     sectionDescription: "Experiments and demos where I test new technologies.",
     stats: [
@@ -236,7 +236,7 @@ export const en = {
         description: "Explore my applications and components.",
       },
     ],
-    attr_data: "extras",
+    attr_data: "playground",
   },
 
   contactSection: {
@@ -277,10 +277,10 @@ export const en = {
       attr_data: "skills",
     },
     {
-      name: "extras",
+      name: "playground",
       icon: "ri:archive-2-line",
       label: "Playground",
-      attr_data: "extras",
+      attr_data: "playground",
     },
     {
       name: "contact",

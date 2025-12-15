@@ -8,24 +8,24 @@ import { getTranslations } from "../i18n/utils";
 
 const lang = Astro.currentLocale as "es" | "en";
 const t = getTranslations(lang);
-const extrasT = t("extras");
-const extraProjects = extrasT.list;
-const statsData = extrasT.stats;
+const playgroundT = t("playground");
+const extraProjects = playgroundT.list;
+const statsData = playgroundT.stats;
 ---
 
 <section
-  id="extras"
-  data-section={extrasT.attr_data}
+  id="playground"
+  data-section={playgroundT.attr_data}
   class="extras-section max-w-7xl w-full mx-auto section-page relative min-h-dvh content-center overflow-hidden py-20 lg:py-0 px-4 lg:px-8"
 >
   <div class="relative">
     <div class="grid h-full lg:grid-cols-2 gap-12 lg:gap-16 lg:items-center">
       <header class="extras-header space-y-6">
         <DecorativeAccent />
-        <Title id="extras-title"> {extrasT.sectionTitle} </Title>
+        <Title id="extras-title"> {playgroundT.sectionTitle} </Title>
 
         <Paragraph id="extras-description">
-          {extrasT.sectionDescription}
+          {playgroundT.sectionDescription}
         </Paragraph>
 
         <div class="stats-grid hidden lg:grid lg:grid-cols-2 gap-4 mt-12">

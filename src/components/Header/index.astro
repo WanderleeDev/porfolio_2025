@@ -37,7 +37,7 @@ const sections_links = ui[lang].navLinks;
     const mm = gsap.matchMedia();
 
     mm.add({ ...GsapBreakpoints }, (context) => {
-      let { isMobile, isTablet, reduceMotion } =
+      let { isMobile, isTablet, isLargeDesktop, reduceMotion } =
         context.conditions as GsapBreakpointsType;
 
       if (reduceMotion) {
@@ -45,7 +45,8 @@ const sections_links = ui[lang].navLinks;
         return;
       }
 
-      const maxWidth = isMobile ? "90%" : isTablet ? "70%" : "50%";
+      const maxWidth =
+        isMobile || isTablet ? "90%" : isLargeDesktop ? "50%" : "70%";
 
       gsap.to(headerElement, {
         width: maxWidth,
