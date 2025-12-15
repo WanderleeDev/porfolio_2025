@@ -19,7 +19,7 @@ export function createRevealSectionTL(
     lineDecorative instanceof HTMLElement &&
     lineDecorative.classList.contains("line-decorative");
 
-  gsap.set(splitHeading.chars, { yPercent: 130 });
+  gsap.set(splitHeading.chars, { yPercent: 130, fontFamily: "inherit" });
   gsap.set(splitParagraph.lines, { y: 80, opacity: 0 });
 
   if (isLineDecorative) gsap.set(lineDecorative, { scaleX: 0 });

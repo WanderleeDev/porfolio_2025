@@ -40,11 +40,11 @@ export const es = {
     label: "Ir al GitHub de WanderleeDev",
   },
   presentation: {
-    start: "Inspirando",
-    accent: "Start-ups,",
-    middle: "una",
-    end_prefix: "historia a la",
-    end_highlight: "vez.",
+    start: "Perfil",
+    accent: "Fullstack,",
+    middle: "y",
+    end_prefix: "diseño",
+    end_highlight: "moderno.",
     attr_data: "presentation",
   },
   form: {

@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import BadgeLink from "../components/BadgeLink.astro";
 import { getTranslations } from "../i18n/utils";
 
@@ -16,18 +15,8 @@ const presentationT = t("presentation");
     id="presentation"
     class="relative z-10 mx-auto text-center text-balance font-bold leading-[0.95] font-fira-sans-extra-condensed flex flex-col justify-center items-center gap-1 text-stone-100 font-banner h-fit w-fit"
   >
-    <span class="font-inherit relative">
-      <span id="presentation-start" class="font-inherit inline-block">
-        {presentationT.start}
-      </span>
-      <Image
-        id="presentation-start-image"
-        src="https://cdn.prod.website-files.com/650adb68d76aea2d4f381df5/651c8c15c7a7f650f1c3b9b5_star.webp"
-        alt="Star"
-        height={200}
-        width={200}
-        class="size-20 absolute left-0 top-2/4 -translate-y-1/2 -translate-x-full -z-10"
-      />
+    <span id="presentation-start" class="font-inherit inline-block">
+      {presentationT.start}
     </span>
     <span class="font-inherit">
       <span class="relative font-inherit inline-block">
@@ -49,10 +38,11 @@ const presentationT = t("presentation");
         {presentationT.middle}
       </span>
     </span>
-    <span
-      class="relative font-[inherit] inline-block first-letter:skew-x-12 overflow-hidden"
-    >
-      <span id="presentation-end-prefix" class="font-inherit inline-block">
+    <span class="relative font-[inherit] inline-block first-letter:skew-x-12">
+      <span
+        id="presentation-end-prefix"
+        class="font-inherit inline-block z-10 overflow-clip"
+      >
         {presentationT.end_prefix}
       </span>
       <span
@@ -76,7 +66,6 @@ const presentationT = t("presentation");
 
   function animatePresentation() {
     const elements = [
-      "presentation-start-image",
       "presentation-start",
       "presentation-accent",
       "presentation-accent-text",
@@ -91,7 +80,6 @@ const presentationT = t("presentation");
     if (elements.some((el) => !el)) return;
 
     const [
-      presentationStartImage,
       presentationStart,
       accentElement,
       accentText,
@@ -116,7 +104,7 @@ const presentationT = t("presentation");
     });
     gsap.set(accentElement, { scaleX: 0, transformOrigin: "left" });
     gsap.set([accentText, presentationEndHighlight], { opacity: 0 });
-    gsap.set(accentText, { scale: 20 });
+    gsap.set(accentText, { scale: 30 });
     gsap.set(presentationEndHighlight, { scale: 0 });
     gsap.set(presentationMiddle, { y: "100%", opacity: 0 });
     gsap.set(presentationEndPrefixSplit.chars, {
@@ -133,18 +121,7 @@ const presentationT = t("presentation");
       ease: "back.out(1.7)",
       duration: 0.5,
       stagger: 0.03,
-      onStart: () => presentationStartImage?.classList.add("animate-spin"),
     })
-      .to(
-        presentationStartImage,
-        {
-          duration: 0.2,
-          delay: 0.15,
-          onComplete: () =>
-            presentationStartImage?.classList.remove("animate-spin"),
-        },
-        "<"
-      )
       .to(
         accentElement,
         {
@@ -172,6 +149,11 @@ const presentationT = t("presentation");
         y: "0%",
         duration: 0.3,
         stagger: 0.03,
+        overflow: "visible",
+      })
+      .to(presentationEndPrefix, {
+        keyframes: [{ y: "20%", overflow: "visible" }, { y: "0%" }],
+        duration: 0.3,
       })
       .to(
         presentationEndHighlight,
