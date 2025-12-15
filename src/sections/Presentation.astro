@@ -15,25 +15,25 @@ const presentationT = t("presentation");
     id="presentation"
     class="relative z-10 mx-auto text-center text-balance font-bold leading-[0.95] font-fira-sans-extra-condensed flex flex-col justify-center items-center gap-1 text-stone-100 font-banner h-fit w-fit"
   >
-    <span id="presentation-start" class="font-inherit inline-block">
+    <span id="presentation-start" class="font-inherit inline-block invisible">
       {presentationT.start}
     </span>
     <span class="font-inherit">
       <span class="relative font-inherit inline-block">
         <span
           id="presentation-accent"
-          class="absolute inset-0 -translate-x-4 w-full h-full -skew-x-12 bg-yellow-500 -z-10 rounded-tr-4xl will-change-transform rounded-bl-4xl mix-blend-difference scale-105 origin-left"
+          class="absolute inset-0 -translate-x-4 w-full h-full -skew-x-12 bg-yellow-500 -z-10 rounded-tr-4xl will-change-transform rounded-bl-4xl mix-blend-difference scale-x-0 origin-left"
         ></span>
         <span
           id="presentation-accent-text"
-          class="font-inherit z-10 text-gray-900 inline-block mix-blend-plus-darker"
+          class="font-inherit z-10 text-gray-900 inline-block mix-blend-plus-darker opacity-0"
         >
           {presentationT.accent}
         </span>
       </span>
       <span
         id="presentation-middle"
-        class="font-inherit inline-block relative -z-10"
+        class="font-inherit inline-block relative -z-10 opacity-0"
       >
         {presentationT.middle}
       </span>
@@ -41,13 +41,13 @@ const presentationT = t("presentation");
     <span class="relative font-[inherit] inline-block first-letter:skew-x-12">
       <span
         id="presentation-end-prefix"
-        class="font-inherit inline-block z-10 overflow-clip"
+        class="font-inherit inline-block z-10 overflow-clip invisible"
       >
         {presentationT.end_prefix}
       </span>
       <span
         id="presentation-end-highlight"
-        class="font-inherit text-yellow-500 inline-block"
+        class="font-inherit text-yellow-500 inline-block opacity-0"
       >
         {presentationT.end_highlight}
       </span>
@@ -113,6 +113,9 @@ const presentationT = t("presentation");
     });
     gsap.set(badge, { opacity: 0, x: 100, rotate: 45 });
     gsap.set(badgeOuter, { opacity: 0 });
+    gsap.set([presentationStart, presentationEndPrefix], {
+      visibility: "visible",
+    });
 
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
