@@ -16,7 +16,7 @@ const { projects } = Astro.props;
 ---
 
 <ul
-  class="grid place-content-center items-center gap-8 md:gap-6 grid-cols-1 md:grid-cols-2 w-[90%] md:w-full lg:w-4/5 px-2 mx-auto lg:min-h-dvh pt-4 md:py-0"
+  class="grid place-content-center items-center gap-8 md:gap-6 grid-cols-1 md:grid-cols-2 w-[90%] md:w-full lg:w-4/5 mx-auto lg:min-h-dvh pt-4 md:py-0"
 >
   {
     projects.map(({ title, demo_url, image, description }, i) => (
@@ -37,10 +37,10 @@ const { projects } = Astro.props;
             inferSize
           />
           <div
-            class={`absolute flex flex-col justify-end bottom-0 h-full px-4 md:px-6 py-2 pointer-events-none text-gray-100 font-bold lg:opacity-0 lg:group-hover:opacity-100 lg:duration-300 lg:transition-opacity text-base md:text-[1.5vw] ${i % 2 === 0 ? "right-0" : "left-0"} bg-black/70`}
+            class={`absolute flex flex-col inset-0 justify-end bottom-0 h-full px-4 md:px-6 py-2 pointer-events-none text-gray-100 font-bold lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 lg:duration-300 lg:transition-opacity text-base md:text-[1.5vw] ${i % 2 === 0 ? "right-0" : "left-0"} bg-black/70`}
           >
-            <span class="font-extrabold">{title}</span>
-            <p class="pt-2 lowercase first-letter:uppercase text-neutral-200">
+            <span class="font-extrabold text-lg lg:text-2xl">{title}</span>
+            <p class="pt-2 lowercase first-letter:uppercase text-neutral-200 hidden lg:block">
               {description}.
             </p>
           </div>

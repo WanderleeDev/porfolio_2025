@@ -20,7 +20,10 @@ export function createRevealSectionTL(
     lineDecorative.classList.contains("line-decorative");
 
   gsap.set(splitHeading.chars, { yPercent: 130, fontFamily: "inherit" });
-  gsap.set(splitParagraph.lines, { y: 80, opacity: 0 });
+  gsap.set(splitParagraph.lines, {
+    y: 80,
+    opacity: 0,
+  });
 
   if (isLineDecorative) gsap.set(lineDecorative, { scaleX: 0 });
 
@@ -57,8 +60,10 @@ export function createRevealSectionTL(
       opacity: 1,
       duration: 0.4,
       stagger: 0.015,
+      display: "inline-block",
       ease: "power3.out",
       delay: 0.05,
+      textAlign: "left",
     },
     "-=0.4"
   );

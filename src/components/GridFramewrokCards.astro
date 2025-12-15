@@ -11,15 +11,6 @@ interface Props {
 
 const { extras } = Astro.props;
 
-// Helper to get colors based on title (since they were hardcoded in the loop before)
-// Or we can move this logic to the parent. Let's keep it simple and just map the data.
-// Wait, the original code had 'color' and 'hoverColor' hardcoded in the array.
-// The new data structure in index.ts DOES NOT have color/hoverColor.
-// I need to add them back in the parent or handle them here.
-// Let's handle them here based on the framework name to keep data clean,
-// OR update data/index.ts. Updating data/index.ts is cleaner but more work.
-// Let's map it here for now to avoid breaking changes in data structure structure if not needed.
-
 const getColors = (title: string) => {
   const lower = title.toLowerCase();
   if (lower.includes("react"))

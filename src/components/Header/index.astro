@@ -82,9 +82,6 @@ const sections_links = ui[lang].navLinks;
     const sections = $$(".section-page");
     const navLinks = $$(".mobile-link, .desktop-link");
 
-    console.log("Sections found:", sections?.length);
-    console.log("Nav links found:", navLinks?.length);
-
     if (!sections?.length || !navLinks?.length) return;
 
     const observerOptions = {
@@ -97,18 +94,14 @@ const sections_links = ui[lang].navLinks;
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const activeSection = entry.target.getAttribute("data-section");
-          console.log("Active section:", activeSection);
 
           navLinks.forEach((link) => {
             const linkSection = link.getAttribute("data-section");
-            console.log("Comparing:", linkSection, "===", activeSection);
 
             if (linkSection === activeSection) {
-              console.log("Adding active to:", link);
-              link.style.color = "#fbbf24"; // amber-400
+              link.style.color = "#fbbf24";
             } else {
-              console.log("Removing active from:", link);
-              link.style.color = ""; // reset to default
+              link.style.color = "";
             }
           });
         }
@@ -116,7 +109,6 @@ const sections_links = ui[lang].navLinks;
     }, observerOptions);
 
     sections.forEach((section) => {
-      console.log("Observing section:", section.getAttribute("data-section"));
       observer.observe(section);
     });
 
